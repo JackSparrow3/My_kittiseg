@@ -1,5 +1,6 @@
 # KittiSeg
 This is a copy from https://github.com/MarvinTeichmann/KittiSeg
+
 KittiSeg performs segmentation of roads by utilizing an FCN based model. The model achieved [first place](http://www.cvlibs.net/datasets/kitti/eval_road_detail.php?result=ca96b8137feb7a636f3d774c408b1243d8a6e0df) on the Kitti Road Detection Benchmark at submission time. Check out our [paper](https://arxiv.org/abs/1612.07695) for a detailed model description.
 
 <img src="data/examples/um_road_000032.png" width="288"> <img src="data/examples/uu_road_000002.png" width="288"> <img src="data/examples/uu_road_000049.png" width="288"> 
