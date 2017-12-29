@@ -61,9 +61,9 @@ except ImportError:
                   "'git submodule update --init --recursive'")
     exit(1)
 
-flags.DEFINE_string('logdir', '/home/yu/projects/KittiSeg/RUNS/InceptionV3_2017_12_28_11.59',
+flags.DEFINE_string('logdir', '/home/yu/projects/KittiSeg/RUNS/InceptionV3_2017_12_28_18.19',
                     'Path to logdir.')
-flags.DEFINE_string('input_image', '/home/yu/projects/KittiSeg/DATA/data_road/testing/image_2/uu_000053.png',
+flags.DEFINE_string('input_image', '/home/yu/projects/KittiSeg/DATA/data_road/testing/image_2/umm_000000.png',
                     'Image to apply KittiSeg.')
 flags.DEFINE_string('output_image', None,
                     'Image to apply KittiSeg.')
@@ -240,7 +240,7 @@ def main(_):
     green_image_name = output_base_name.split('.')[0] + '_green.png'
     # scp.misc.imshow(rb_image)
     #TODO save the image--------------------------------------------------------------------------yu
-    save_image=True
+    save_image=False
     if save_image:
         scp.misc.imsave(FLAGS.logdir+'182000' + '.png', green_image)
     scp.misc.imshow(green_image)
