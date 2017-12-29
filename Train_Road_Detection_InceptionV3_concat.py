@@ -160,8 +160,8 @@ def train_loop(myhypes=None):
 
 def main(_):
     # train_loop('hypes/InceptionV3.json')
-    # train_loop('hypes/InceptionV3_concat.json')
-    train_loop('hypes/InceptionV3_skip.json')
+    train_loop('hypes/InceptionV3_concat.json')
+    # train_loop('hypes/InceptionV3_skip.json')
 
 
 

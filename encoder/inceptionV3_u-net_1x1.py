@@ -15,7 +15,7 @@ from __future__ import print_function
 
 
 import tensorflow as tf
-from inception import inception_v3_skip
+from inception import inception_v3_u_net_1x1
 import os
 
 
@@ -32,7 +32,7 @@ def inference(hypes, images, train=True):
 
     print ('dropout set to ',hypes['solver']['dropout'])
 
-    _, logit, _ = inception_v3_skip.inception_v3_fcn(images,is_training=train,dropout_keep_prob=hypes['solver']['dropout'])
+    _, logit, _ = inception_v3_u_net_1x1.inception_v3_fcn(images,is_training=train,dropout_keep_prob=hypes['solver']['dropout'])
     logits = {}
 
     logits['images'] = images
