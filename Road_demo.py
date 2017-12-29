@@ -185,11 +185,11 @@ def main(_):
 
     # TODO test time -----------------------------------------------------------yu
 
-    for i in xrange(100):
-
-        output = sess.run([softmax],feed_dict=feed)
-    logging.info('Finished 100 time and average is in {}s\n'.format((
-        time.time() - start_time)/100.0))
+    # for i in xrange(100):
+    #
+    #     output = sess.run([softmax],feed_dict=feed)
+    # logging.info('Finished 100 time and average is in {}s\n'.format((
+    #     time.time() - start_time)/100.0))
 
     # TODO test time ----------------------------------------------------------yu
     # Reshape output from flat vector to 2D Image

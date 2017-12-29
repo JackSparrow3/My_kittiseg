@@ -1,7 +1,7 @@
 {
   "model": {
     "input_file": "../inputs/kitti_seg_input.py",
-    "architecture_file" : "../encoder/fcn8_incepV3_u_net.py",
+    "architecture_file" : "../encoder/fcn8_incepV3_u_net_1x1.py",
     "objective_file" : "../decoder/incepV3_loss.py",
     "optimizer_file" : "../optimizer/generic_optimizer.py",
     "evaluator_file" : "../evals/kitti_eval.py"
@@ -63,7 +63,7 @@
       "learning_rate": 1e-5,
       "learning_rate_step": null,
       "max_steps": 5,
-      "dropout":0.5
+      "dropout":0.65
   },
   "use_fc_wd": true,
   "loss": "xentropy",
