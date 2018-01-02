@@ -639,8 +639,7 @@ def inception_v3_fcn(inputs,
             net = end_points['Mixed_7c']
             with tf.variable_scope('Upsampling'):
                 with slim.arg_scope([slim.conv2d_transpose], stride=2, padding='VALID', activation_fn=None,
-                                    normalizer_fn=None,
-                                    weights_regularizer=slim.l2_regularizer(5e-4)):  # TODO CHANGE padding to SAME
+                                    normalizer_fn=None):  # TODO CHANGE padding to SAME
                     # 1 x 1 x 1000
                     # the depth can be obtained auto
                     # now it's hard coded

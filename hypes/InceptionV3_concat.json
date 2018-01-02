@@ -63,7 +63,7 @@
       "learning_rate": 1e-5,
       "learning_rate_step": null,
       "max_steps": 200000,
-      "dropout":0.65
+      "dropout":1.2
   },
   "use_fc_wd": true,
   "loss": "xentropy",

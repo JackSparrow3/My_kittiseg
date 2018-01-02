@@ -47,8 +47,8 @@
   },
 
   "logging": {
-    "display_iter": 1000,
-    "eval_iter": 5000,
+    "display_iter": 10,
+    "eval_iter": 40,
     "write_iter": 1000,
     "save_iter": 10000,
     "image_iter": 20000

@@ -25,7 +25,7 @@ from inception_utils import inception_arg_scope
 
 
 
-slim = tf.contrib.slim
+import tensorflow.contrib.slim as slim
 trunc_normal = lambda stddev: tf.truncated_normal_initializer(0.0, stddev)
 
 tf.get_default_graph().get_all_collection_keys()
@@ -700,6 +700,8 @@ def _reduced_kernel_size_for_small_input(input_tensor, kernel_size):
                        min(shape[2], kernel_size[1])]
   return kernel_size_out
 
+
+print (1)
 
 inception_v3_arg_scope = inception_arg_scope
 

@@ -26,10 +26,10 @@ from __future__ import print_function
 
 import tensorflow as tf
 
-slim = tf.contrib.slim
+import tensorflow.contrib.slim as slim
 
 
-def inception_arg_scope(weight_decay=0.00004,
+def inception_arg_scope(weight_decay=5e-4,
                         use_batch_norm=True,
                         batch_norm_decay=0.9997,
                         batch_norm_epsilon=0.001):
@@ -45,6 +45,7 @@ def inception_arg_scope(weight_decay=0.00004,
   Returns:
     An `arg_scope` to use for the inception models.
   """
+  print (2)
   batch_norm_params = {
       # Decay for the moving averages.
       'decay': batch_norm_decay,
@@ -60,7 +61,7 @@ def inception_arg_scope(weight_decay=0.00004,
     normalizer_fn = None
     normalizer_params = {}
   # Set weight_decay for weights in Conv and FC layers.
-  with slim.arg_scope([slim.conv2d, slim.fully_connected],
+  with slim.arg_scope([slim.conv2d, slim.conv2d_transpose],
                       weights_regularizer=slim.l2_regularizer(weight_decay)):
     with slim.arg_scope(
         [slim.conv2d],
