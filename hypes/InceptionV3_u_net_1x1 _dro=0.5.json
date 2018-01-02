@@ -1,7 +1,7 @@
 {
   "model": {
     "input_file": "../inputs/kitti_seg_input.py",
-    "architecture_file" : "../encoder/fcn8_incepV3_u_net_same.py",
+    "architecture_file" : "../encoder/fcn8_incepV3_u_net_1x1.py",
     "objective_file" : "../decoder/incepV3_loss.py",
     "optimizer_file" : "../optimizer/generic_optimizer.py",
     "evaluator_file" : "../evals/kitti_eval.py"
@@ -40,8 +40,8 @@
     "crop_chance": 0.8,
     "fix_shape": false,
     "reseize_image": true,
-    "image_height" : 375,
-    "image_width" : 1242,
+    "image_height" : 384,
+    "image_width" : 1248,
 
     "augment_level": 0
   },
@@ -63,7 +63,7 @@
       "learning_rate": 1e-5,
       "learning_rate_step": null,
       "max_steps": 200000,
-      "dropout":0.65
+      "dropout":0.5
   },
   "use_fc_wd": true,
   "loss": "xentropy",
