@@ -5,7 +5,7 @@ from __future__ import print_function
 import logging
 import sys
 import tensorflow as tf
-
+import tensorflow.contrib.slim as slim
 
 # def get_learning_rate(hypes, step):
 #    lr = hypes['solver']['learning_rate']
@@ -74,20 +74,24 @@ def training(hypes, loss, global_step, learning_rate, opt=None,var_list=None):
 
         hypes['opt'] = opt
 
-        grads_and_vars = opt.compute_gradients(total_loss,var_list=var_list)
+        train_op = slim.learning.create_train_op(total_loss,opt,global_step,clip_gradient_norm=hypes["clip_norm"])
 
-        if hypes['clip_norm'] > 0:
-            grads, tvars = zip(*grads_and_vars)
-            clip_norm = hypes["clip_norm"]
-            clipped_grads, norm = tf.clip_by_global_norm(grads, clip_norm)
-            grads_and_vars = zip(clipped_grads, tvars)
-
-        train_op = opt.apply_gradients(grads_and_vars, global_step=global_step)
-
-        update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
-
-        with tf.control_dependencies(update_ops):
-            train_op = opt.apply_gradients(grads_and_vars,
-                                           global_step=global_step)
+        # grads_and_vars = opt.compute_gradients(total_loss,var_list=var_list)
+        #
+        # if hypes['clip_norm'] > 0:
+        #     grads, tvars = zip(*grads_and_vars)
+        #     clip_norm = hypes["clip_norm"]
+        #     clipped_grads, norm = tf.clip_by_global_norm(grads, clip_norm)
+        #     grads_and_vars = zip(clipped_grads, tvars)
+        # # a=slim.
+        # # train_op = opt.apply_gradients(grads_and_vars, global_step=global_step)
+        #
+        #
+        # update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
+        #
+        # with tf.control_dependencies(update_ops):
+        #
+        #     train_op = opt.apply_gradients(grads_and_vars,
+        #                                    global_step=global_step)
 
     return train_op

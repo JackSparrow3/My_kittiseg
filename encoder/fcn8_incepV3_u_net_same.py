@@ -11,7 +11,7 @@ Copyright (c) 2017 Marvin Teichmann
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
-
+import tensorflow.contrib.slim as slim
 
 
 import tensorflow as tf
@@ -30,9 +30,9 @@ def inference(hypes, images, train=True):
       softmax_linear: Output tensor with the computed logits.
     """
 
-    print ('dropout set to ',hypes['solver']['dropout'])
 
-    _, logit, _ = inception_v3_same.inception_v3_fcn(images,is_training=train,dropout_keep_prob=hypes['solver']['dropout'])
+    with slim.arg_scope(inception_v3_same.inception_v3_arg_scope()):
+        _, logit, _ = inception_v3_same.inception_v3_fcn(images,is_training=train,dropout_keep_prob=hypes['solver']['dropout'])
     logits = {}
 
     logits['images'] = images

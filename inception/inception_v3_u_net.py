@@ -597,7 +597,7 @@ def inception_v3_fcn(inputs,
                             is_training=is_training):
             net, end_points = inception_v3(
                 inputs, num_classes=num_classes, scope=scope, dropout_keep_prob=dropout_keep_prob, min_depth=min_depth,
-                depth_multiplier=depth_multiplier, spatial_squeeze=spatial_squeeze)
+                depth_multiplier=depth_multiplier, spatial_squeeze=spatial_squeeze,is_training=is_training)
 
             # # Final pooling and prediction
             # with tf.variable_scope('Logits'):

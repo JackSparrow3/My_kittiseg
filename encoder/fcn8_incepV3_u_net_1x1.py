@@ -12,7 +12,7 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-
+import tensorflow.contrib.slim as slim
 
 import tensorflow as tf
 from inception import inception_v3_u_net_1x1
@@ -31,8 +31,8 @@ def inference(hypes, images, train=True):
     """
 
     print ('dropout set to ',hypes['solver']['dropout'])
-
-    _, logit, _ = inception_v3_u_net_1x1.inception_v3_fcn(images,is_training=train,dropout_keep_prob=hypes['solver']['dropout'])
+    with slim.arg_scope(inception_v3_u_net_1x1.inception_v3_arg_scope()):
+        _, logit, _ = inception_v3_u_net_1x1.inception_v3_fcn(images,is_training=train,dropout_keep_prob=hypes['solver']['dropout'])
     logits = {}
 
     logits['images'] = images

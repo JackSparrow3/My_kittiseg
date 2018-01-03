@@ -79,7 +79,7 @@ def loss(hypes, decoded_logits, labels):
         elif hypes['loss'] == 'softIU':
             cross_entropy_mean = _compute_soft_ui(hypes, labels, softmax,
                                                   epsilon)
-#TODO add L2 regularization
+        #TODO add L2 regularization
         reg_loss_col = tf.GraphKeys.REGULARIZATION_LOSSES
 
         weight_loss = tf.add_n(tf.get_collection(reg_loss_col),

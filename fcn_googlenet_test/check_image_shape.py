@@ -3,7 +3,8 @@ import os
 import sys
 import cv2
 import tensorflow as tf
-from inception import inception_v3
+import inception.inception_v3_u_net_same_gcn as inceptionv3
+
 import tensorflow.contrib.slim as slim
 # sys.path.append(sys.path.append('/home/yu/projects/FCN_GoogLeNet'))
 # import inception_v3_fcn
@@ -35,12 +36,12 @@ import tensorflow.contrib.slim as slim
 #     print image_dic
 
 
-image_input=tf.placeholder(tf.float32,[1,224,224,3])
+image_input=tf.placeholder(tf.float32,[1,375,1242,3])
 image=cv2.imread('/home/yu/projects/KittiSeg/DATA/data_road/training/image_2/um_000000.png')
 gpu_options = tf.GPUOptions(allow_growth=True)
 sess = tf.Session()
-with slim.arg_scope(inception_v3.inception_arg_scope()):
-    _,net,end_points = inception_v3.inception_v3_fcn(inputs=image_input)
+with slim.arg_scope(inceptionv3.inception_arg_scope()):
+    _,net,end_points = inceptionv3.inception_v3_fcn(inputs=image_input)
 init = tf.global_variables_initializer()
 sess.run(init)
 

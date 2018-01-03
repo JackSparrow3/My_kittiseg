@@ -30,7 +30,7 @@ def inference(hypes, images, train=True):
       softmax_linear: Output tensor with the computed logits.
     """
 
-    print ('dropout set to ',hypes['solver']['dropout'])
+
     with slim.arg_scope(inception_v3_u_net.inception_v3_arg_scope()):
         _, logit, _ = inception_v3_u_net.inception_v3_fcn(images,is_training=train,dropout_keep_prob=hypes['solver']['dropout'])
     logits = {}

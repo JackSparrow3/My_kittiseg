@@ -64,7 +64,7 @@ except ImportError:
                   "'git submodule update --init --recursive'")
     exit(1)
 
-flags.DEFINE_string('logdir', '/home/yu/projects/KittiSeg/RUNS/InceptionV3_dropout=0.65_concat',
+flags.DEFINE_string('logdir', '/home/yu/projects/KittiSeg/RUNS/InceptionV3_u_net_bn_f1=95.5',
                     'Path to logdir.')
 flags.DEFINE_string('input_image', '/home/yu/projects/KittiSeg/DATA/data_road/testing/image_2/umm_000000.png',
                     'Image to apply KittiSeg.')
@@ -155,7 +155,8 @@ def main(_):
         # Load weights from logdir
         core.load_weights(logdir, sess, saver)
 
-        eval_dict,_=kitti_eval.evaluate_with_crf(hypes,sess,image_placehold,prediction)
+        # eval_dict,_=kitti_eval.evaluate_with_crf(hypes,sess,image_placehold,prediction)
+        eval_dict , _ =kitti_eval.evaluate_without_crf(hypes,sess,image_placehold,prediction)
         for name, value in eval_dict:
             logging.info('    %s %s : % 0.04f ' % (name, '(raw)', value))
         # utils.print_eval_dict(eval_dict, prefix='(raw) ')
