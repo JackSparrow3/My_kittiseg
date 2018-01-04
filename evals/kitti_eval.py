@@ -12,7 +12,7 @@ import numpy as np
 import scipy as scp
 import random
 sys.path.insert(1, 'incl')
-sys.path.append('/home/yu/projects/KittiSeg/submodules/evaluation/kitti_devkit')
+# sys.path.append('/home/yu/projects/KittiSeg/submodules/evaluation/kitti_devkit')
 from seg_utils import seg_utils as seg
 # import seg_utils as seg
 

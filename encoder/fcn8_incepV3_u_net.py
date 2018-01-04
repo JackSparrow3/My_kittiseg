@@ -15,7 +15,7 @@ from __future__ import print_function
 
 
 import tensorflow as tf
-from inception import inception_v3_u_net
+from inception import inception_v3_u_net as inception
 import os
 import tensorflow.contrib.slim as slim
 
@@ -31,8 +31,8 @@ def inference(hypes, images, train=True):
     """
 
 
-    with slim.arg_scope(inception_v3_u_net.inception_v3_arg_scope()):
-        _, logit, _ = inception_v3_u_net.inception_v3_fcn(images,is_training=train,dropout_keep_prob=hypes['solver']['dropout'])
+    with slim.arg_scope(inception.inception_v3_arg_scope()):
+        _, logit, _ = inception.inception_v3_fcn(images,is_training=train,dropout_keep_prob=hypes['solver']['dropout'])
     logits = {}
 
     logits['images'] = images
@@ -40,7 +40,7 @@ def inference(hypes, images, train=True):
 
 
 
-#TODO this is what we want
+    #TODO this is what we want
     logits['fcn_logits'] = logit
 
 

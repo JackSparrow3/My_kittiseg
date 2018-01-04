@@ -44,14 +44,16 @@ import tensorflow as tf
 from evals import kitti_eval
 from evals.kitti_eval import evaluate
 import tensorvision.utils as utils
-sys.path.append('/home/yu/projects/FCN_GoogLeNet')
+
 import post_crf
 flags = tf.app.flags
 FLAGS = flags.FLAGS
+print (sys.path)
 sys.path.insert(1, 'incl')
 
 from seg_utils import seg_utils as seg
-
+curdir=os.getcwd()
+# print (sys.path)
 try:
     # Check whether setup was done correctly
 

@@ -15,7 +15,7 @@ import tensorflow.contrib.slim as slim
 
 
 import tensorflow as tf
-from inception import inception_v3_same as inception
+from inception import inception_v3_u_net_same_gcn as inception
 import os
 
 
@@ -40,7 +40,7 @@ def inference(hypes, images, train=True):
 
 
 
-#TODO this is what we want
+    #TODO this is what we want
     logits['fcn_logits'] = logit
 
 
