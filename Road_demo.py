@@ -46,14 +46,15 @@ import post_crf
 flags = tf.app.flags
 FLAGS = flags.FLAGS
 sys.path.insert(1, 'incl')
-
-from seg_utils import seg_utils as seg
+import incl.seg_utils.seg_utils as seg
+# from seg_utils import seg_utils as seg
 
 try:
     # Check whether setup was done correctly
-
-    import tensorvision.utils as tv_utils
-    import tensorvision.core as core
+    import incl.tensorvision.utils as tv_utils
+    # import tensorvision.utils as tv_utils
+    import incl.tensorvision.core as core
+    # import tensorvision.core as core
 except ImportError:
     # You forgot to initialize submodules
     logging.error("Could not import the submodules.")
@@ -61,9 +62,9 @@ except ImportError:
                   "'git submodule update --init --recursive'")
     exit(1)
 
-flags.DEFINE_string('logdir', '/home/yu/projects/KittiSeg/RUNS/InceptionV3_2017_12_28_18.19',
+flags.DEFINE_string('logdir', '/home/yu/projects/KittiSeg/RUNS/InceptionV3_2018_01_05_16.23',
                     'Path to logdir.')
-flags.DEFINE_string('input_image', '/home/yu/projects/KittiSeg/DATA/data_road/testing/image_2/umm_000000.png',
+flags.DEFINE_string('input_image', '/home/yu/projects/KittiSeg/DATA/data_road/testing/image_2/umm_000018.png',
                     'Image to apply KittiSeg.')
 flags.DEFINE_string('output_image', None,
                     'Image to apply KittiSeg.')
@@ -197,7 +198,7 @@ def main(_):
     print ('the image.shape =',shape)
     #TODO if use CRF-----------------------------------------------------------------------------------yu
     use_crf=False
-
+    street_prediction=np.empty([int(shape[0])*int(shape[1]),1])
     if use_crf:
         output_image = output[0][:, :].reshape(shape[0], shape[1], 2)
         output_image = post_crf.post_process_crf(image, output_image, 2)

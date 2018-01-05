@@ -36,12 +36,14 @@ import tensorflow.contrib.slim as slim
 #     print image_dic
 
 
-image_input=tf.placeholder(tf.float32,[1,512,512,3])
+image_input=tf.placeholder(tf.float32,[1,375,1242,3])
 image=cv2.imread('/home/yu/projects/KittiSeg/DATA/data_road/training/image_2/um_000000.png')
 gpu_options = tf.GPUOptions(allow_growth=True)
 sess = tf.Session()
 with slim.arg_scope(resnet.resnet_arg_scope()):
-    net,end_points = resnet.resnet_v1_50(inputs=image_input,num_classes=21,is_training=False)
+    net,end_points = resnet.resnet_v1_50(image_input,2,False,False)
+for i in end_points:
+    print i
 init = tf.global_variables_initializer()
 sess.run(init)
 

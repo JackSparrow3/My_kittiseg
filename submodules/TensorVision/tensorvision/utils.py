@@ -26,7 +26,7 @@ flags = tf.app.flags
 FLAGS = flags.FLAGS
 
 
-flags.DEFINE_string('gpus', None,
+flags.DEFINE_string('--gpus', None,
                     ('Which gpus to use. For multiple GPUs use comma seperated'
                      'ids. [e.g. --gpus 0,3]'))
 

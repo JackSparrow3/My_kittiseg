@@ -61,8 +61,8 @@ FLAGS = flags.FLAGS
 
 sys.path.insert(1, 'incl')
 
-import tensorvision.train as train
-import tensorvision.utils as utils
+import incl.tensorvision.train as train
+import incl.tensorvision.utils as utils
 
 flags.DEFINE_string('name', None,
                     'Append a name Tag to run.')

@@ -37,8 +37,8 @@ import tensorflow as tf
 
 import string
 
-import tensorvision.utils as utils
-import tensorvision.core as core
+import incl.tensorvision.utils as utils
+import incl.tensorvision.core as core
 
 flags = tf.app.flags
 FLAGS = flags.FLAGS

@@ -12,7 +12,7 @@ import os
 import numpy as np
 import tensorflow as tf
 slim = tf.contrib.slim
-import tensorvision.utils as utils
+import incl.tensorvision.utils as utils
 
 flags = tf.app.flags
 FLAGS = flags.FLAGS

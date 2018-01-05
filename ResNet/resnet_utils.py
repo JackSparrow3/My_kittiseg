@@ -42,24 +42,24 @@ import tensorflow.contrib.slim as slim
 class Block(collections.namedtuple('Block', ['scope', 'unit_fn', 'args'])):
   """A named tuple describing a ResNet block.
   Its parts are:
-    scope: The scope of the `Block`.
-    unit_fn: The ResNet unit function which takes as input a `Tensor` and
-      returns another `Tensor` with the output of the ResNet unit.
-    args: A list of length equal to the number of units in the `Block`. The list
-      contains one (depth, depth_bottleneck, stride) tuple for each unit in the
-      block to serve as argument to unit_fn.
+	scope: The scope of the `Block`.
+	unit_fn: The ResNet unit function which takes as input a `Tensor` and
+	  returns another `Tensor` with the output of the ResNet unit.
+	args: A list of length equal to the number of units in the `Block`. The list
+	  contains one (depth, depth_bottleneck, stride) tuple for each unit in the
+	  block to serve as argument to unit_fn.
   """
 
 
 def subsample(inputs, factor, scope=None):
   """Subsamples the input along the spatial dimensions.
   Args:
-    inputs: A `Tensor` of size [batch, height_in, width_in, channels].
-    factor: The subsampling factor.
-    scope: Optional variable_scope.
+	inputs: A `Tensor` of size [batch, height_in, width_in, channels].
+	factor: The subsampling factor.
+	scope: Optional variable_scope.
   Returns:
-    output: A `Tensor` of size [batch, height_out, width_out, channels] with the
-      input, either intact (if factor == 1) or subsampled (if factor > 1).
+	output: A `Tensor` of size [batch, height_out, width_out, channels] with the
+	  input, either intact (if factor == 1) or subsampled (if factor > 1).
   """
   if factor == 1:
     return inputs
@@ -72,7 +72,7 @@ def conv2d_same(inputs, num_outputs, kernel_size, stride, rate=1, scope=None):
   When stride > 1, then we do explicit zero-padding, followed by conv2d with
   'VALID' padding.
   Note that
-     net = conv2d_same(inputs, num_outputs, 3, stride=stride)
+	 net = conv2d_same(inputs, num_outputs, 3, stride=stride)
   is equivalent to
      net = slim.conv2d(inputs, num_outputs, 3, stride=1, padding='SAME')
      net = subsample(net, factor=stride)

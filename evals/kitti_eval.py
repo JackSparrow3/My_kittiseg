@@ -13,14 +13,14 @@ import scipy as scp
 import random
 sys.path.insert(1, 'incl')
 # sys.path.append('/home/yu/projects/KittiSeg/submodules/evaluation/kitti_devkit')
-from seg_utils import seg_utils as seg
+from incl.seg_utils import seg_utils as seg
 # import seg_utils as seg
 
 import tensorflow as tf
 import time
 
 import tensorvision
-import tensorvision.utils as utils
+import incl.tensorvision.utils as utils
 sys.path.append('/home/yu/projects/FCN_GoogLeNet')
 import post_crf
 
