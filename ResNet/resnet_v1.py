@@ -212,26 +212,76 @@ def resnet_v1(inputs,
             end_point='trans_0'
             net=slim.conv2d_transpose(net,1024,[2,2],scope=end_point)
             end_points[end_point]=net
+            # 24x78x1024
+            net = end_points['resnet_v1_50/block3']
+            net , end_points=gcn(net,end_points,depth=1024,name='GCNblock3')
+            # 24X78X1024
+            net,end_points=br(net,end_points,depth=1024,name='BRblock3')
+            # 24X78X1024
+            end_point='fuse_0'
+            net=tf.concat([net,end_points['trans_0']],axis=3,name=end_point)
+            end_points[end_point]=net
+            # 24x78x2048
+            end_point='fuse_0_conv_0'
+            net=slim.conv2d(net,1024,[3,3],stride=1,padding='VALID',scope=end_point)
+            end_points[end_point]=net
+            # 22x76x1024
+            net,end_points=br(net,end_points,depth=1024,name='BR_fuse0')
+            # 22x76x1024
+
+            end_point='trans_1'
+            net=slim.conv2d_transpose(net,512,[5,6],scope=end_point)
+            end_points[end_point]=net
+            # 47x156x512
+            end_point='resnet_v1_50/block2'
+            net=end_points[end_point]
+            net, end_points=gcn(net,end_points,depth=512,name='GCNblock2')
+            # 47x156x512
+            net, end_points=br(net,end_points,depth=512,name='BRblock2')
+            # 47x156x512
+            end_point='fuse_1'
+            net=tf.concat([net,end_points['trans_1']],axis=3,name=end_point)
+            end_points[end_point]=net
+            # 47x156x1024
+            end_point='fuse_1_conv_0'
+            net=slim.conv2d(net,512,[3,3],stride=1,padding='VALID',scope=end_point)
+            end_points[end_point]=net
+            # 47x156x512
+            net,end_points=br(net,end_points,depth=512,name='BR_fuse1')
+            # 45x154x512
+            end_point = 'trans_2'
+            net = slim.conv2d_transpose(net, 256, [6, 5], scope=end_point,padding='VALID')
+            end_points[end_point] = net
+            # 94x311x256
+            net=end_points['resnet_v1_50/block1']
+            net, end_points=gcn(net,end_points,depth=256,name='GCNblock1')
+            net, end_points=br(net,end_points,depth=256,name='BRblock1')
+            # 94x311x256
+            end_point='fuse_2'
+            net=tf.concat([net,end_points['trans_2']],axis=3,name=end_point)
+            # 94x311x512
+            end_point='fuse_2_conv_0'
+            net=slim.conv2d(net,256,[3,3],stride=1,padding='VALID',scope=end_point)
+            end_points[end_point]=net
+            # 92x309x256
+            net,end_points = br(net,end_points,depth=256,name='BR_fuse2')
+            end_point='trans_3'
+            net = slim.conv2d_transpose(net, 64, [6, 5],scope=end_point)
+            end_points[end_point]=net
+            # 188x621x64
+            end_point='trans_3_conv_0'
+            net=slim.conv2d(net,16,[3,3],stride=1,padding='VALID',scope=end_point)
+            end_points[end_point]=net
+            # 186x619x16
+            net,end_points=br(net,end_points,depth=16,name='BR_192x624')
+            # 186x619x16
+            end_point='trans_4'
+            net=slim.conv2d_transpose(net,2,[5,6],scope=end_point)
+            logits,end_points=br(net,end_points,depth=2,name='BR_trans4')
+        end_points['upsamping']=logits
 
 
-
-        if global_pool:
-          # Global average pooling.
-          net = tf.reduce_mean(net, [1, 2], name='pool5', keep_dims=True)
-          end_points['global_pool'] = net
-        if num_classes:
-          net = slim.conv2d(net, num_classes, [1, 1], activation_fn=None,
-                            normalizer_fn=None, scope='logits')
-          end_points[sc.name + '/logits'] = net
-          if spatial_squeeze:
-            net = tf.squeeze(net, [1, 2], name='SpatialSqueeze')
-            end_points[sc.name + '/spatial_squeeze'] = net
-          end_points['predictions'] = slim.softmax(net, scope='predictions')
-
-
-
-
-        return net, end_points
+  return net, end_points
 resnet_v1.default_image_size = 224
 
 
@@ -260,7 +310,7 @@ def resnet_v1_block(scope, base_depth, num_units, stride):
 def resnet_v1_50(inputs,
                  num_classes=None,
                  is_training=True,
-                 global_pool=True,
+                 global_pool=False,
                  output_stride=None,
                  spatial_squeeze=False,
                  reuse=None,

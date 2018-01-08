@@ -247,7 +247,7 @@ class FCN8VGG:
 
             weights = self.get_deconv_filter(f_shape)
             self._add_wd_and_summary(weights, self.wd, "fc_wlosses")
-            deconv = tf.nn.conv2d_transpose(bottom, weights, output_shape,
+            deconv = tf.nn.conv2d_transpose(bottom, weights,output_shape,
                                             strides=strides, padding='SAME')
 
             if debug:

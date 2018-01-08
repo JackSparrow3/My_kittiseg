@@ -23,4 +23,5 @@ for i in endpoint:
     shape=endpoint[i].shape
     print (i)
     print (shape)
+
 print img.shape
