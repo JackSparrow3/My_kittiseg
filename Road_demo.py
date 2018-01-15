@@ -41,8 +41,8 @@ import numpy as np
 import scipy as scp
 import scipy.misc
 import tensorflow as tf
-sys.path.append('/home/yu/projects/FCN_GoogLeNet')
-import post_crf
+# sys.path.append('/home/yu/projects/FCN_GoogLeNet')
+# import post_crf
 flags = tf.app.flags
 FLAGS = flags.FLAGS
 sys.path.insert(1, 'incl')
@@ -62,9 +62,11 @@ except ImportError:
                   "'git submodule update --init --recursive'")
     exit(1)
 
-flags.DEFINE_string('logdir', '/home/yu/projects/KittiSeg/RUNS/InceptionV3_2018_01_05_16.23',
+
+flags.DEFINE_string('logdir', 'RUNS/InceptionV3_u_net_bn_f1=95.5',
                     'Path to logdir.')
-flags.DEFINE_string('input_image', '/home/yu/projects/KittiSeg/DATA/data_road/testing/image_2/umm_000018.png',
+flags.DEFINE_string('input_image', 'DATA/data_road/testing/image_2/umm_000018.png',
+
                     'Image to apply KittiSeg.')
 flags.DEFINE_string('output_image', None,
                     'Image to apply KittiSeg.')
