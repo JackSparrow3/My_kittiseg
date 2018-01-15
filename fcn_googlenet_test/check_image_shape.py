@@ -3,9 +3,10 @@ import os
 import sys
 import cv2
 import tensorflow as tf
-import inception.inception_v3_u_net_same_gcn as inceptionv3
-import ResNet.resnet_v1 as resnet
+import inception.inception_v4 as inceptionv4
+import ResNet.resnet_v2 as resnet
 import tensorflow.contrib.slim as slim
+
 import incl.tensorflow_fcn.fcn8_vgg as vgg
 # sys.path.append(sys.path.append('/home/yu/projects/FCN_GoogLeNet'))
 # import inception_v3_fcn
@@ -44,8 +45,10 @@ sess = tf.Session()
 # vgg_fcn = vgg.FCN8VGG(vgg16_npy_path='/home/yu/projects/KittiSeg/DATA/vgg16.npy')
 # vgg_fcn.build(image_input, train=False, num_classes=2, random_init_fc8=True)
 
-with slim.arg_scope(resnet.resnet_arg_scope()):
-    net,end_points = resnet.resnet_v1_50(image_input,2,False,False)
+with slim.arg_scope(inceptionv4.inception_arg_scope()):
+    net,end_points = inceptionv4.inception_v4(image_input,2,False)
+# with slim.arg_scope(resnet.resnet_arg_scope()):
+#     net,end_points = resnet.resnet_v2_50(image_input, 2, False, False)
 for i in end_points:
     print i
 init = tf.global_variables_initializer()

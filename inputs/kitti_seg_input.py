@@ -291,8 +291,8 @@ def random_resize(image, gt_image, lower_size, upper_size, sig):
 def crop_to_size(hypes, image, gt_image):
     new_width = image.shape[1]
     new_height = image.shape[0]
-    width = hypes['arch']['image_width']
-    height = hypes['arch']['image_height']
+    width = hypes['jitter']['image_width']
+    height = hypes['jitter']['image_height']
     if new_width > width:
         max_x = max(new_height-height, 0)
         max_y = new_width-width

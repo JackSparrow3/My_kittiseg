@@ -1,7 +1,7 @@
 {
   "model": {
     "input_file": "../inputs/kitti_seg_input.py",
-    "architecture_file" : "../encoder/resnet_v2_gcn.py",
+    "architecture_file" : "../encoder/resnet_gcn.py",
     "objective_file" : "../decoder/incepV3_loss.py",
     "optimizer_file" : "../optimizer/generic_optimizer.py",
     "evaluator_file" : "../evals/kitti_eval.py"

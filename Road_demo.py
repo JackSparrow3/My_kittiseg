@@ -217,7 +217,8 @@ def main(_):
     # rb_image = seg.make_overlay(image, output_image)
 
     # res=post_crf.post_process_crf(image,output_image,2)
-
+    output_image1=output[0][:,0].reshape(shape[0], shape[1])
+    street_prediction=output_image > output_image1
 
 
 
