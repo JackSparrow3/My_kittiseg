@@ -91,7 +91,7 @@ tf.flags.DEFINE_boolean(
     'ignore_missing_vars', True,'When restoring a checkpoint would ignore missing variables.')
 
 tf.flags.DEFINE_string(
-    'checkpoint_path', 'ResNet/resnet_v1_50.ckpt','The path to a checkpoint from which to fine-tune.')
+    'checkpoint_path', 'ResNet/resnet_v2_50.ckpt','The path to a checkpoint from which to fine-tune.')
 # this should be 'logs', used to be None
 
 tf.flags.DEFINE_string(
