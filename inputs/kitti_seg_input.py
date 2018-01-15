@@ -56,7 +56,7 @@ def maybe_download_and_extract(hypes):
     if os.path.exists(vgg_weights) and os.path.exists(kitti_road_dir):
         return
 
-    import tensorvision.utils as utils
+    import incl.tensorvision.utils as utils
     import zipfile
     from shutil import copy2
 
