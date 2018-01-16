@@ -25,6 +25,7 @@ from __future__ import print_function
 import tensorflow as tf
 
 from inception_utils import inception_arg_scope
+from inception_utils import ppm
 
 import tensorflow.contrib.slim as slim
 
@@ -288,6 +289,7 @@ def inception_v4(inputs, num_classes=2, is_training=True,
 				with tf.variable_scope('upsampling'):
 					with slim.arg_scope([slim.conv2d_transpose], stride=2, padding='VALID', activation_fn=None,
 															normalizer_fn=None):
+						net,end_points=ppm(net,end_points,name='ppm')
 						end_point='mixed_7d_conv_1'
 						net=slim.conv2d(net,1024,[3, 3],scope=end_point)
 						end_points[end_point]=net

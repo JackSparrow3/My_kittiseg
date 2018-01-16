@@ -75,6 +75,10 @@ def training(hypes, loss, global_step, learning_rate, opt=None,var_list=None):
         hypes['opt'] = opt
 
         train_op = slim.learning.create_train_op(total_loss,opt,global_step,clip_gradient_norm=hypes["clip_norm"])
+        # update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
+        # if update_ops:
+        #     updates = tf.group(*update_ops)
+        #     total_loss = opt.with_dependencies([updates], total_loss)
 
         # grads_and_vars = opt.compute_gradients(total_loss,var_list=var_list)
         #

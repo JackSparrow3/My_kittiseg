@@ -70,3 +70,40 @@ def inception_arg_scope(weight_decay=5e-4,
         normalizer_fn=normalizer_fn,
         normalizer_params=normalizer_params) as sc:
       return sc
+
+
+def ppm(input,end_points,name=None):
+  with tf.variable_scope('Pyramid_Pooling'):
+    end_point=name+'branch_0'
+    net=slim.avg_pool2d(input,[10,37],stride=1,padding='VALID',scope=end_point)
+    end_points[end_point]=net
+    end_point=end_point+'conv_0'
+    net=slim.conv2d(net,1,[1,1],stride=1,padding='SAME',scope=end_point)
+    end_points[end_point]=net
+    end_point=end_point+'up'
+    net=slim.conv2d_transpose(net,1,[10,37],stride=2,padding='VALID',scope=end_point)
+    end_points[end_point]=net
+
+    end_point=name+'branch_1'
+    net=slim.avg_pool2d(input,[5,18],stride=[5,18],padding='VALID',scope=end_point)
+    end_points[end_point]=net
+    end_point=name+'conv_1'
+    net=slim.conv2d(net,1,[1,1],stride=1,padding='SAME',scope=end_point)
+    end_points[end_point]=net
+
+    end_point=name+'branch_2'
+    net=slim.avg_pool2d(input,[3,12],stride=[3,12],padding='VALID',scope=end_point)
+    end_points[end_point]=net
+    end_point=name+'conv_2'
+    net=slim.conv2d(net,1,[1,1],stride=1,padding='SAME',scope=end_point)
+    end_points[end_point]=net
+
+    end_point=name+'branch_3'
+    net=slim.avg_pool2d(input,[2,7],stride=[2,7],padding='VALID',scope=end_point)
+    end_points[end_point]=net
+    end_point=name+'conv_3'
+    net=slim.conv2d(net,1,[1,1],stride=1,padding='SAME',scope=end_point)
+    end_points[end_point]=net
+
+
+
