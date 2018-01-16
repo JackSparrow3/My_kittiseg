@@ -63,7 +63,7 @@ except ImportError:
     exit(1)
 
 
-flags.DEFINE_string('logdir', 'RUNS/InceptionV3_u_net_bn_f1=95.5',
+flags.DEFINE_string('logdir', 'RUNS/InceptionV3_2018_01_15_18.11',
                     'Path to logdir.')
 flags.DEFINE_string('input_image', 'DATA/data_road/testing/image_2/umm_000018.png',
 
