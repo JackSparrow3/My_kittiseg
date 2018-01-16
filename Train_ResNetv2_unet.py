@@ -158,7 +158,7 @@ def train_loop(myhypes=None):
 def main(_):
     # train_loop('hypes/InceptionV3.json')
     # train_loop('hypes/InceptionV3_concat.json')
-    train_loop('hypes/Resnet_gcn_same_addinput.json')
+    train_loop('hypes/Resnet-v2_ppmgcn_101.json')
 
 
 
