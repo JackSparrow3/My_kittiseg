@@ -230,7 +230,8 @@ def start_tv_session(hypes,exclude_scopes=None,checkpoint_path=None):
         kc = 10000.0
 
     saver = tf.train.Saver(max_to_keep=int(utils.cfg.max_to_keep))
-
+    # config = tf.ConfigProto()
+    # config.gpu_options.allow_growth=True
     sess = tf.get_default_session()
 
     # Run the Op to initialize the variables.
