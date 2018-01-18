@@ -209,13 +209,13 @@ def resnet_v2(inputs,
             end_points[end_point]=net
             # 47x156x1536
             end_point = 'fuse_0_conv_0'
-            net = slim.conv2d(net, 512, [3, 3], stride=1, padding='SAME', scope=end_point)
+            net = slim.conv2d(net, 512, [1, 1], stride=1, padding='SAME', scope=end_point)
             end_points[end_point] = net
             # 47x156x512
             net, end_points = br(net, end_points, name='BR_fuse0')
             # 47x156x512
             #TODO gcn blcok3
-            net,end_points=gcn(end_points['resnet_v2_101/'+'block3'],end_points,depth=512,name='GCNblock3')
+            net,end_points=gcn(end_points['resnet_v2_50/'+'block3'],end_points,depth=512,name='GCNblock3')
             # 47x156x512
             net,end_points=br(net,end_points,name='BRblock3')
             # 47x156x512
@@ -224,13 +224,13 @@ def resnet_v2(inputs,
             end_points[end_point]=net
             # 47x156x1024
             end_point = 'fuse_1_conv_0'
-            net = slim.conv2d(net, 256, [3, 3], stride=1, padding='SAME', scope=end_point)
+            net = slim.conv2d(net, 256, [1, 1], stride=1, padding='SAME', scope=end_point)
             end_points[end_point] = net
             # 47x156x256
             net,end_points=br(net,end_points,name='BR_fuse1')
             # 47x156x256
             #TODO gcn block2
-            net, end_points = gcn(end_points['resnet_v2_101/' + 'block2'], end_points, depth=256,
+            net, end_points = gcn(end_points['resnet_v2_50/' + 'block2'], end_points, depth=256,
                                   name='GCNblock2')
             # 47x156x256
             net, end_points = br(net,end_points,name='BRblock2')
@@ -251,7 +251,7 @@ def resnet_v2(inputs,
             net = slim.conv2d_transpose(net, 256, [6, 5], scope=end_point, padding='VALID')
             end_points[end_point] = net
             # 94x311x256
-            net = end_points['resnet_v2_101/'+'block1']
+            net = end_points['resnet_v2_50/'+'block1']
             net, end_points = gcn(net, end_points, depth=256, name='GCNblock1')
             net, end_points = br(net, end_points, name='BRblock1')
             # 94x311x256
@@ -279,7 +279,6 @@ def resnet_v2(inputs,
             # 186x619x32
             end_point = 'trans_3'
             net = slim.conv2d_transpose(net, 2, [5, 6], scope=end_point)
-            net, end_points = br(net, end_points, name='BR_trans3')
             # 375x1242x2
 
 

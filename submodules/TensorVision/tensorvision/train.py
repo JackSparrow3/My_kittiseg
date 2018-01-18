@@ -369,7 +369,9 @@ def do_training(hypes,trainable_scopes=None,exclude_scopes=None,checkpoint_path=
     modules = utils.load_modules_from_hypes(hypes)
 
     # Tell TensorFlow that the model will be built into the default Graph.
-    with tf.Session() as sess:
+    config = tf.ConfigProto()
+    config.gpu_options.allow_growth=True
+    with tf.Session(config=config) as sess:
 
         # build the graph based on the loaded modules
         with tf.name_scope("Queues"):

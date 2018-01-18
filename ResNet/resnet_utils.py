@@ -271,12 +271,7 @@ def gcn_small(input, end_points=None, depth=None, name=None):
 	end_point = name + 'a_4_1'
 	net = slim.conv2d(net, depth, [1, 3], 1, 'SAME', activation_fn=None, scope=end_point)
 	end_points[end_point] = net
-	end_point = name + 'a_5_0'
-	net = slim.conv2d(net, depth, [3, 1], 1, 'SAME', activation_fn=None, scope=end_point)
-	end_points[end_point] = net
-	end_point = name + 'a_5_1'
-	net = slim.conv2d(net, depth, [1, 3], 1, 'SAME', activation_fn=None, scope=end_point)
-	end_points[end_point] = net
+
 
 
 	end_point = name + 'b_1_0'
@@ -303,16 +298,11 @@ def gcn_small(input, end_points=None, depth=None, name=None):
 	end_point = name + 'b_4_1'
 	net = slim.conv2d(net, depth, [3, 1], 1, 'SAME', activation_fn=None, scope=end_point)
 	end_points[end_point] = net
-	end_point = name + 'b_5_0'
-	net = slim.conv2d(net, depth, [1, 3], 1, 'SAME', activation_fn=None, scope=end_point)
-	end_points[end_point] = net
-	end_point = name + 'b_5_1'
-	net = slim.conv2d(net, depth, [3, 1], 1, 'SAME', activation_fn=None, scope=end_point)
-	end_points[end_point] = net
+
 
 
 	end_point = name
-	net = tf.add(end_points[name + 'a_5_1'], net, name=name + 'sum')
+	net = tf.add(end_points[name + 'a_4_1'], net, name=name + 'sum')
 	end_points[end_point] = net
 
 	return net,end_points
