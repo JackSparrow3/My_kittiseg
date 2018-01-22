@@ -63,7 +63,7 @@ except ImportError:
     exit(1)
 
 
-flags.DEFINE_string('logdir', 'RUNS/InceptionV3_2018_01_15_18.11',
+flags.DEFINE_string('logdir', 'RUNS/InceptionV3_u_net_bn_f1=96.2',
                     'Path to logdir.')
 flags.DEFINE_string('input_image', 'DATA/data_road/testing/image_2/umm_000018.png',
 
@@ -244,9 +244,10 @@ def main(_):
     green_image_name = output_base_name.split('.')[0] + '_green.png'
     # scp.misc.imshow(rb_image)
     #TODO save the image--------------------------------------------------------------------------yu
-    save_image=False
+    save_image=True
     if save_image:
-        scp.misc.imsave(FLAGS.logdir+'182000' + '.png', green_image)
+        # np.save(FLAGS.logdir+'182000' + '.png',output_image)
+        scp.misc.imsave(FLAGS.logdir+'182000' + '.png', output_image)
     scp.misc.imshow(green_image)
     """
     scp.misc.imsave(raw_image_name, output_image)

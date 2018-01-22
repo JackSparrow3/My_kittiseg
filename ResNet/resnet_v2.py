@@ -44,7 +44,7 @@ from __future__ import print_function
 import tensorflow as tf
 
 from ResNet import resnet_utils
-from ResNet.resnet_utils import gcn as gcn
+from ResNet.resnet_utils import gcn_small as gcn
 from ResNet.resnet_utils import br as br
 from ResNet.resnet_utils import ppm as ppm
 slim = tf.contrib.slim
@@ -182,7 +182,7 @@ def resnet_v2(inputs,
             net = resnet_utils.conv2d_same(net,32, 3 ,2,scope='conv0_1')
             net = resnet_utils.conv2d_same(net, 64,3, 1,scope='conv0_2')
             net = resnet_utils.conv2d_same(net, 64, 3, 1, scope='conv0_3')
-          # net = slim.max_pool2d(net, [3, 3], stride=2, scope='pool1')
+          net = slim.max_pool2d(net, [3, 3], stride=2, scope='pool1')
         net = resnet_utils.stack_blocks_dense(net, blocks, output_stride)
         # This is needed because the pre-activation variant does not have batch
         # normalization or activation functions in the residual unit output. See
@@ -198,88 +198,106 @@ def resnet_v2(inputs,
             # net = end_points['resnet_v2_50/block4']
             # 47x156x2048
             net, end_points=ppm(net,end_points,name='ppm')
-            # 47x156x512
+            # 24x78x512
             #TODO gcn block 4
-            net, end_points = gcn(end_points['postnorm'], end_points, depth=1024, name='GCNblock4')
-            # 47x156x1024
+            net, end_points = gcn(end_points['postnorm'], end_points, depth=512, name='GCNblock4')
+            # 24x78x512
             net, end_points = br(net, end_points, name='BRblcok4')
-            # 47x156x1024
+            # 24x78x512
             end_point='fuse_0'
             net=tf.concat([net,end_points['ppm']],axis=3,name=end_point)
             end_points[end_point]=net
-            # 47x156x1536
+            # 24x78x1024
             end_point = 'fuse_0_conv_0'
             net = slim.conv2d(net, 512, [1, 1], stride=1, padding='SAME', scope=end_point)
             end_points[end_point] = net
-            # 47x156x512
+            # 24x78x512
             net, end_points = br(net, end_points, name='BR_fuse0')
-            # 47x156x512
+            # 24x78x512
             #TODO gcn blcok3
-            net,end_points=gcn(end_points['resnet_v2_50/'+'block3'],end_points,depth=512,name='GCNblock3')
-            # 47x156x512
+            net,end_points=gcn(end_points['resnet_v2_101/'+'block3'],end_points,depth=512,name='GCNblock3')
+            # 24x78x512
             net,end_points=br(net,end_points,name='BRblock3')
-            # 47x156x512
+            # 24x78x512
             end_point='fuse_1'
             net=tf.concat([net,end_points['BR_fuse0']],axis=3,name=end_point)
             end_points[end_point]=net
-            # 47x156x1024
+            # 24x78x1024
             end_point = 'fuse_1_conv_0'
             net = slim.conv2d(net, 256, [1, 1], stride=1, padding='SAME', scope=end_point)
             end_points[end_point] = net
-            # 47x156x256
+            # 24x78x256
             net,end_points=br(net,end_points,name='BR_fuse1')
-            # 47x156x256
+            # 24x78x256
             #TODO gcn block2
-            net, end_points = gcn(end_points['resnet_v2_50/' + 'block2'], end_points, depth=256,
+            net, end_points = gcn(end_points['resnet_v2_101/' + 'block2'], end_points, depth=256,
                                   name='GCNblock2')
-            # 47x156x256
+            # 24x78x256
             net, end_points = br(net,end_points,name='BRblock2')
-            # 47x156x256
+            # 24x78x256
             end_point='fuse_2'
             net=tf.concat([net,end_points['BR_fuse1']],axis=3,name=end_point)
             end_points[end_point]=net
-            # 47x156x512
+            # 24x78x512
             end_point = 'fuse_2_conv_0'
             net = slim.conv2d(net, 256, [3, 3], stride=1, padding='VALID', scope=end_point)
             end_points[end_point] = net
-            # 45x154x256
+            # 22x76x256
             net, end_points = br(net, end_points, name='BR_fuse2')
-            # 45x154x256
+            # 22x76x256
             # TODO upsampling
 
             end_point = 'trans_1'
-            net = slim.conv2d_transpose(net, 256, [6, 5], scope=end_point, padding='VALID')
+            net = slim.conv2d_transpose(net, 256, [6, 6], scope=end_point, padding='VALID')
             end_points[end_point] = net
-            # 94x311x256
-            net = end_points['resnet_v2_50/'+'block1']
+            # 48x156x256
+            net = end_points['resnet_v2_101/'+'block1']
+            # 48x156x256
             net, end_points = gcn(net, end_points, depth=256, name='GCNblock1')
             net, end_points = br(net, end_points, name='BRblock1')
-            # 94x311x256
+            # 48x156x256
             end_point = 'fuse_3'
             net = tf.concat([net, end_points['trans_1']], axis=3, name=end_point)
-            # 94x311x512
+            # 48x156x512
             end_point = 'fuse_3_conv_0'
             net = slim.conv2d(net, 256, [3, 3], stride=1, padding='VALID', scope=end_point)
             end_points[end_point] = net
-            # 92x309x256
+            # 45x154x256
             net, end_points = br(net, end_points, name='BR_fuse3')
-            # 92x309x256
+            # 45x154x256
             # TODO upsampling
 
             end_point = 'trans_2'
             net = slim.conv2d_transpose(net, 64, [6, 5], scope=end_point)
             end_points[end_point] = net
-            # 188x621x64
+            # 96x311x64
 
             end_point = 'trans_2_conv_0'
             net = slim.conv2d(net, 32, [3, 3], stride=1, padding='VALID', scope=end_point)
             end_points[end_point] = net
-            # 186x619x32
-            net, end_points = br(net, end_points, name='BR_186x619')
-            # 186x619x32
+            # 94x309x32
+            net, end_points = br(net, end_points, name='BR_92x309')
+            # 94x309x32
+
+            # end_point='trans_3'
+            # net=slim.conv2d_transpose(net,2,[11,10],stride=4,scope=end_point)
+            # end_points[end_point]=net
+
+
+
             end_point = 'trans_3'
-            net = slim.conv2d_transpose(net, 2, [5, 6], scope=end_point)
-            # 375x1242x2
+            net = slim.conv2d_transpose(net,16, [6,8], scope=end_point)
+            end_points[end_point]=net
+            # 192x621x16
+            end_point= 'trans_3_conv_0'
+            net=slim.conv2d(net,4,[3,3],stride=1,padding='VALID', scope=end_point)
+            end_points[end_point]=net
+            # 190x622x4
+            net,end_points=br(net,end_points,name='BR_186X618')
+            # 190X622X4
+            end_point = 'trans_4'
+            net = slim.conv2d_transpose(net, 2, [6, 6],stride=2, scope=end_point)
+           # 375x1242x2
 
 
         return net, end_points

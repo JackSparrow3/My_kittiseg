@@ -18,8 +18,8 @@ from incl.seg_utils import seg_utils as seg
 
 import tensorflow as tf
 import time
-
-import tensorvision
+import cv2
+import incl.tensorvision
 import incl.tensorvision.utils as utils
 sys.path.append('/home/yu/projects/FCN_GoogLeNet')
 # import post_crf
@@ -336,6 +336,11 @@ def evaluate_without_crf(hypes,sess,image_pl,inf_out):
                     output_im = output[0][:, 1].reshape(shape[0], shape[1])
                     # output_im = output[0][:, :].reshape(shape[0], shape[1],2)
                     # output_im = post_crf.post_process_crf(input_image, output_im, 2)
+                    _,_,_,output_path,num=image_file.split("/")
+                    # output_im_=output_im*255.0
+                    np.save(image_dir+'/gt_image_1/'+num,output_im)
+                    # cv2.imwrite(image_dir+'gt_image_1'+num,output_im,0)
+
 
 
                     if hypes['jitter']['fix_shape']:

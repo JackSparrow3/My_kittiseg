@@ -32,7 +32,7 @@ def inference(hypes, images, train=True):
 
 
     with slim.arg_scope(resnet.resnet_arg_scope()):
-        logit, _ = resnet.resnet_v2_50(images,2,is_training=train,global_pool=False)
+        logit, _ = resnet.resnet_v2_101(images,2,is_training=train,global_pool=False)
     logits = {}
 
     logits['images'] = images

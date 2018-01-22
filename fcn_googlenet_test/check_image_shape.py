@@ -38,10 +38,12 @@ import incl.tensorflow_fcn.fcn8_vgg as vgg
 #     print image_dic
 
 
-image_input=tf.placeholder(tf.float32,[1,375,1242,3])
+image_input=tf.placeholder(tf.float32,[1,384,1248,3])
 image=cv2.imread('/home/yu/projects/KittiSeg/DATA/data_road/training/image_2/um_000000.png')
-gpu_options = tf.GPUOptions(allow_growth=True)
-sess = tf.Session()
+# gpu_options = tf.GPUOptions(allow_growth=True)
+config = tf.ConfigProto()
+config.gpu_options.allow_growth=True
+sess = tf.Session(config=config)
 # vgg_fcn = vgg.FCN8VGG(vgg16_npy_path='/home/yu/projects/KittiSeg/DATA/vgg16.npy')
 # vgg_fcn.build(image_input, train=False, num_classes=2, random_init_fc8=True)
 

@@ -43,7 +43,7 @@ import scipy.misc
 import tensorflow as tf
 from evals import kitti_eval
 from evals.kitti_eval import evaluate
-import tensorvision.utils as utils
+import incl.tensorvision.utils as utils
 
 import post_crf
 flags = tf.app.flags
@@ -51,14 +51,14 @@ FLAGS = flags.FLAGS
 print (sys.path)
 sys.path.insert(1, 'incl')
 
-from seg_utils import seg_utils as seg
+from incl.seg_utils import seg_utils as seg
 curdir=os.getcwd()
 # print (sys.path)
 try:
     # Check whether setup was done correctly
 
-    import tensorvision.utils as tv_utils
-    import tensorvision.core as core
+    import incl.tensorvision.utils as tv_utils
+    import incl.tensorvision.core as core
 except ImportError:
     # You forgot to initialize submodules
     logging.error("Could not import the submodules.")
@@ -66,7 +66,7 @@ except ImportError:
                   "'git submodule update --init --recursive'")
     exit(1)
 
-flags.DEFINE_string('logdir', '/home/yu/projects/KittiSeg/RUNS/InceptionV3_u_net_bn_f1=95.5',
+flags.DEFINE_string('logdir', '/home/yu/projects/KittiSeg/RUNS/Resnet_randomsize_f1=94.8',
                     'Path to logdir.')
 flags.DEFINE_string('input_image', '/home/yu/projects/KittiSeg/DATA/data_road/testing/image_2/umm_000000.png',
                     'Image to apply KittiSeg.')

@@ -248,7 +248,7 @@ def gcn(input, end_points=None, depth=None, name=None):
 
 def gcn_small(input, end_points=None, depth=None, name=None):
 	end_point=name+'a_1_0'
-	net=slim.conv2d(input,depth,[3,1],1,'SAME',activation_fn=None,scope=end_point)
+	net=slim.conv2d(input, depth, [3, 1], 1, 'SAME', activation_fn=None, scope=end_point)
 	end_points[end_point]=net
 	end_point = name + 'a_1_1'
 	net = slim.conv2d(net, depth, [1, 3], 1, 'SAME', activation_fn=None, scope=end_point)
@@ -271,11 +271,17 @@ def gcn_small(input, end_points=None, depth=None, name=None):
 	end_point = name + 'a_4_1'
 	net = slim.conv2d(net, depth, [1, 3], 1, 'SAME', activation_fn=None, scope=end_point)
 	end_points[end_point] = net
+	end_point = name + 'a_5_0'
+	net = slim.conv2d(net, depth, [3, 1], 1, 'SAME', activation_fn=None, scope=end_point)
+	end_points[end_point] = net
+	end_point = name + 'a_5_1'
+	net = slim.conv2d(net, depth, [1, 3], 1, 'SAME', activation_fn=None, scope=end_point)
+	end_points[end_point] = net
 
 
 
 	end_point = name + 'b_1_0'
-	net = slim.conv2d(input, depth, [1, 3], 1, 'SAME', activation_fn=None, scope=end_point)
+	net=slim.conv2d(input, depth, [1, 3], 1, 'SAME', activation_fn=None, scope=end_point)
 	end_points[end_point] = net
 	end_point = name + 'b_1_1'
 	net = slim.conv2d(net, depth, [3, 1], 1, 'SAME', activation_fn=None, scope=end_point)
@@ -296,6 +302,12 @@ def gcn_small(input, end_points=None, depth=None, name=None):
 	net = slim.conv2d(net, depth, [1, 3], 1, 'SAME', activation_fn=None, scope=end_point)
 	end_points[end_point] = net
 	end_point = name + 'b_4_1'
+	net = slim.conv2d(net, depth, [3, 1], 1, 'SAME', activation_fn=None, scope=end_point)
+	end_points[end_point] = net
+	end_point = name + 'b_5_0'
+	net = slim.conv2d(net, depth, [1, 3], 1, 'SAME', activation_fn=None, scope=end_point)
+	end_points[end_point] = net
+	end_point = name + 'b_5_1'
 	net = slim.conv2d(net, depth, [3, 1], 1, 'SAME', activation_fn=None, scope=end_point)
 	end_points[end_point] = net
 
@@ -379,57 +391,57 @@ def conv(input,end_points,shape=None,wd=0.00004,name=None,):
 def ppm(input,end_points,name=None):
 	with tf.variable_scope('Pyramid_Pooling'):
 		end_point=name+'_branch_0'
-		net=slim.avg_pool2d(input,[15,15],stride=[15,15],padding='VALID',scope=end_point)
+		net=slim.avg_pool2d(input,[24,24],stride=[24,24],padding='VALID',scope=end_point)
 		end_points[end_point]=net
-		# 3x10x2048
+		# 1x3x2048
 		end_point=end_point+'_conv_0'
 		net=slim.conv2d(net,128,[1,1],stride=1,padding='SAME',scope=end_point)
 		end_points[end_point]=net
-		# 3x10x128
+		# 1x3x128
 		end_point=end_point+'_up'
-		net=slim.conv2d_transpose(net,128,[27,66],stride=10,padding='VALID',scope=end_point)
+		net=slim.conv2d_transpose(net,128,[24,38],stride=20,padding='VALID',scope=end_point)
 		end_points[end_point]=net
-		# 47x156x128
+		# 24x78x128
 
 		end_point=name+'_branch_1'
-		net=slim.avg_pool2d(input,[7,7],stride=[7,7],padding='VALID',scope=end_point)
+		net=slim.avg_pool2d(input,[12,12],stride=[12,12],padding='VALID',scope=end_point)
 		end_points[end_point]=net
-		# 6x22x2048
+		# 2x6x2048
 		end_point=end_point+'_conv_0'
 		net=slim.conv2d(net,128,[1,1],stride=1,padding='SAME',scope=end_point)
 		end_points[end_point]=net
-		# 6x22x128
+		# 2x6x128
 		end_point=end_point+'_up'
-		net=slim.conv2d_transpose(net,128,[12,9],stride=7,padding='VALID',scope=end_point)
+		net=slim.conv2d_transpose(net,128,[12,18],stride=12,padding='VALID',scope=end_point)
 		end_points[end_point]=net
-		# 47x156x128
+		# 24x78x128
 
 
 		end_point=name+'_branch_2'
-		net=slim.avg_pool2d(input,[5,5],stride=[5,5],padding='VALID',scope=end_point)
+		net=slim.avg_pool2d(input,[8,8],stride=[8,8],padding='VALID',scope=end_point)
 		end_points[end_point]=net
-		# 9x31x2048
+		# 3x9x2048
 		end_point=end_point+'_conv_0'
 		net=slim.conv2d(net,128,[1,1],stride=1,padding='SAME',scope=end_point)
 		end_points[end_point]=net
-		# 9x31x128
+		# 3x9x128
 		end_point=end_point+'_up'
-		net=slim.conv2d_transpose(net,128,[7,6],stride=5,padding='VALID',scope=end_point)
+		net=slim.conv2d_transpose(net,128,[8,14],stride=8,padding='VALID',scope=end_point)
 		end_points[end_point]=net
-		# 47x156x128
+		# 24x78x128
 
 		end_point=name+'_branch_3'
-		net=slim.avg_pool2d(input,[3,3],stride=[3,3],padding='VALID',scope=end_point)
+		net=slim.avg_pool2d(input,[4,4],stride=[4,4],padding='VALID',scope=end_point)
 		end_points[end_point]=net
-		# 15x52x2048
+		# 6x13x2048
 		end_point=end_point+'_conv_0'
 		net=slim.conv2d(net,128,[1,1],stride=1,padding='SAME',scope=end_point)
 		end_points[end_point]=net
-		# 15x52x128
+		# 6x13x128
 		end_point=end_point+'_up'
-		net=slim.conv2d_transpose(net,128,[5,3],stride=3,padding='VALID',scope=end_point)
+		net=slim.conv2d_transpose(net,128,[4,6],stride=4,padding='VALID',scope=end_point)
 		end_points[end_point]=net
-		# 47x156x128
+		# 24x78x128
 
 		end_point=name
 		net=tf.concat([net,end_points[name+'_branch_0_conv_0_up'],end_points[name+'_branch_1_conv_0_up'],
