@@ -47,10 +47,10 @@ sess = tf.Session(config=config)
 # vgg_fcn = vgg.FCN8VGG(vgg16_npy_path='/home/yu/projects/KittiSeg/DATA/vgg16.npy')
 # vgg_fcn.build(image_input, train=False, num_classes=2, random_init_fc8=True)
 
-# with slim.arg_scope(inceptionv4.inception_arg_scope()):
-#     net,end_points = inceptionv4.inception_v4(image_input,2,False)
-with slim.arg_scope(resnet.resnet_arg_scope()):
-    net,end_points = resnet.resnet_v2_101(image_input, 2, False, False)
+with slim.arg_scope(inceptionv4.inception_arg_scope()):
+    net,end_points = inceptionv4.inception_v4(image_input,2,False)
+# with slim.arg_scope(resnet.resnet_arg_scope()):
+#     net,end_points = resnet.resnet_v2_101(image_input, 2, False, False)
 for i in end_points:
     print i
 init = tf.global_variables_initializer()

@@ -289,79 +289,79 @@ def inception_v4(inputs, num_classes=2, is_training=True,
 				with tf.variable_scope('upsampling'):
 					with slim.arg_scope([slim.conv2d_transpose], stride=2, padding='VALID', activation_fn=None,
 															normalizer_fn=None):
-						net,end_points=ppm(net,end_points,name='ppm')
+						# net,end_points=ppm(net,end_points,name='ppm')
 						end_point='mixed_7d_conv_1'
-						net=slim.conv2d(net,1024,[3, 3],scope=end_point)
+						net=slim.conv2d(net,1536,[3, 3],scope=end_point)
 						end_points[end_point]=net
-						# 10x37x1024
+						# 10x37x1536
 						end_point='fuse_0'
 						net=tf.concat([net,end_points['Mixed_7a']],axis=3,name=end_point)
 						end_points[end_point]=net
-						# 10x37x2048
+						# 10x37x3072
 						end_point='fuse_0_conv_1'
-						net=slim.conv2d(net,1024,[3, 3],scope=end_point)
+						net=slim.conv2d(net,1536,[3, 3],scope=end_point)
 						end_points[end_point]=net
-						# 10x37x1024
+						# 10x37x1536
 						end_point='fuse_0_conv_2'
-						net=slim.conv2d(net,1024,[3,3],scope=end_point)
+						net=slim.conv2d(net,1536,[3,3],scope=end_point)
 						end_points[end_point]=net
-						# 10x37x1024
+						# 10x37x1536
 						end_point='trans_0'
-						net=slim.conv2d_transpose(net,1024,[3,3],scope=end_point)
+						net=slim.conv2d_transpose(net,1024,[4,4],scope=end_point)
 						end_points[end_point]=net
-						# 21x75x1024
+						# 22x76x1024
 						# TODO upsampling
 
 						end_point='fuse_1'
 						net=tf.concat([net,end_points['Mixed_6h']],axis=3,name=end_point)
 						end_points[end_point]=net
-						# 21x75x2048
+						# 22x76x2048
 						end_point='fuse_1_conv_1'
 						net=slim.conv2d(net,1024,[3,3],scope=end_point)
 						end_points[end_point]=net
-						# 21x75x1024
+						# 22x76x1024
 						end_point='fuse_1_conv_2'
 						net=slim.conv2d(net,512,[3,3],scope=end_point)
 						end_points[end_point]=net
-						# 21x75x512
+						# 22x76x512
 						end_point='trans_1'
-						net=slim.conv2d_transpose(net,384,[4,4],scope=end_point)
+						net=slim.conv2d_transpose(net,384,[3,3],scope=end_point)
 						end_points[end_point]=net
-						# 44x152x384
+						# 45x153x384
 						# TODO upsampling
 
 						end_point='fuse_2'
 						net=tf.concat([net,end_points['Mixed_5e']],axis=3,name=end_point)
 						end_points[end_point]=net
-						# 44x152x768
+						# 45x153x768
 						end_point='fuse_2_conv_1'
 						net=slim.conv2d(net,384,[3,3],scope=end_point)
 						end_points[end_point]=net
-						# 44x152x384
+						# 45x153x384
 						end_point='fuse_2_conv_2'
 						net=slim.conv2d(net,384,[3,3],scope=end_point)
 						end_points[end_point]=net
-						# 44x152x384
+						# 45x153x384
 						end_point='trans_2'
 						net=slim.conv2d_transpose(net,192,[4,4],scope=end_point)
 						end_points[end_point]=net
-						# 90x306x192
+						# 92x308x192
 						# TODO upsampling
 
 						end_point='fuse_3'
 						net=tf.concat([net,end_points['Mixed_4a']],axis=3,name=end_point)
 						end_points[end_point]=net
-						# 90x306x384
+						# 92x308x384
 						end_point='fuse_3_conv_1'
 						net=slim.conv2d(net,192,[3,3],scope=end_point)
 						end_points[end_point]=net
-						# 90x306x192
+						# 92x308x192
 						end_point='fuse_3_conv_2'
 						net=slim.conv2d(net,192,[3,3],scope=end_point)
 						end_points[end_point]=net
-						# 90x306x192
+						# 92x308x192
 						end_point='trans_3'
-						net=slim.conv2d_transpose(net,64,[7,8],scope=end_point)
+						net=slim.conv2d_transpose(net,64,[7,7],scope=end_point)
 						end_points[end_point]=net
 						# 185x618x64
 						# TODO upsampling
@@ -369,19 +369,19 @@ def inception_v4(inputs, num_classes=2, is_training=True,
 						end_point='fuse_4'
 						net=tf.concat([net,end_points['Conv2d_2b_3x3']],axis=3,name=end_point)
 						end_points[end_point]=net
-						# 185x618x128
+						# 189x621x128
 						end_point='fuse_4_conv_1'
 						net=slim.conv2d(net,64,[3,3],scope=end_point)
 						end_points[end_point]=net
-						# 185x618x64
+						# 189x621x64
 						end_point='fuse_4_conv_2'
-						net=slim.conv2d(net,16,[3,3],scope=end_point)
+						net=slim.conv2d(net,32,[3,3],scope=end_point)
 						end_points[end_point] = net
-						# 185x618x16
+						# 189x621x32
 						# TODO upsampling
 
 						end_point='trans_4'
-						net=slim.conv2d_transpose(net,2,[7,8],scope=end_point)
+						net=slim.conv2d_transpose(net,2,[8,8],scope=end_point)
 						end_points[end_point] = net
 						# 375x1242x2
 				# with tf.variable_scope('Logits'):
