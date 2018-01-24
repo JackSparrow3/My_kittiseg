@@ -8,6 +8,7 @@ import ResNet.resnet_v1_same_addinput as resnet
 import tensorflow.contrib.slim as slim
 import inception.inception_v3_randomsize as inceptionv3
 import incl.tensorflow_fcn.fcn8_vgg as vgg
+import numpy as np
 # sys.path.append(sys.path.append('/home/yu/projects/FCN_GoogLeNet'))
 # import inception_v3_fcn
 #TODO check the image shape in the train set
@@ -37,9 +38,10 @@ import incl.tensorflow_fcn.fcn8_vgg as vgg
 #
 #     print image_dic
 
-
-image_input=tf.placeholder(tf.float32,[1,370,1226,3])
-image=cv2.imread('/home/yu/projects/KittiSeg/DATA/data_road/training/image_2/um_000000.png')
+image=np.random.randint(0,1,[384*1248])
+image=image.reshape([1,384,1248,1])
+image_input=tf.placeholder(tf.float32,[1,384,1248,1])
+# image=cv2.imread('/home/yu/projects/KittiSeg/DATA/data_road/training/image_2/um_000000.png')
 # gpu_options = tf.GPUOptions(allow_growth=True)
 config = tf.ConfigProto()
 config.gpu_options.allow_growth=True
@@ -52,13 +54,14 @@ with slim.arg_scope(inceptionv3.inception_arg_scope()):
 #     net,end_points = inceptionv4.inception_v4(image_input,2,False)
 # with slim.arg_scope(resnet.resnet_arg_scope()):
 #     net,end_points = resnet.resnet_v1_50(image_input, 2, True, False)
-print 1
-for i in end_points:
-    print i
+# print 1
+# for i in end_points:
+#     print i
 init = tf.global_variables_initializer()
 sess.run(init)
 
-saver=tf.train.Saver()
-saver.restore(sess,'/home/yu/projects/KittiSeg/inception/inception_v3.ckpt')
+# saver=tf.train.Saver()
+# saver.restore(sess,'/home/yu/projects/KittiSeg/inception/inception_v3.ckpt')
 
-sess.run([net,end_points],feed_dict={image_input:image})
+x,y=sess.run([net,end_points],feed_dict={image_input:image})
+print 1

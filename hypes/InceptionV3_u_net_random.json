@@ -27,7 +27,7 @@
   },
 
   "jitter": {
-    "random_resize": false,
+    "random_resize": true,
     "lower_size": 0.7,
     "upper_size": 1.7,
     "sig": 0.15,

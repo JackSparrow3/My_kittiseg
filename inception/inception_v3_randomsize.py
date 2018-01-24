@@ -661,8 +661,8 @@ def inception_v3_fcn(inputs,
                     end_points[end_point] = net
                     # 10x37x1280
                     end_point = "Conv2d_Trans_1"
-                    net, end_points= _upscore_layer(net,end_points,tf.shape(end_points['Mixed_6e']),depth=768,
-                                                    wkersize=4,hkersize=4,name=end_point)
+                    net, end_points= _upscore_layer(net,end_points,tf.shape(end_points['Mixed_6b']),depth=768,
+                                                    wkersize=3,hkersize=3,name=end_point)
                     #3,3
                     # 24x75x768
                     # TODO upsampling
@@ -680,7 +680,7 @@ def inception_v3_fcn(inputs,
                     end_points[end_point]=net
                     # 21x75x768
                     end_point = "Conv2d_Trans_2"
-                    net, end_points=_upscore_layer(net,end_points,tf.shape(end_points['Mixed_5d']),288,4,4,name=end_point)
+                    net, end_points=_upscore_layer(net,end_points,tf.shape(end_points['Mixed_5d']),288,3,3,name=end_point)
                     # 45x153x288
                     # TODO upsampling
 
@@ -715,7 +715,7 @@ def inception_v3_fcn(inputs,
                     # TODO upsampling
 
                     end_point = "Conv2d_Trans_4"
-                    net,end_points=_upscore_layer(net,end_points,tf.shape(end_points['Conv2d_2b_3x3']),64,3,2,name=end_point)
+                    net,end_points=_upscore_layer(net,end_points,tf.shape(end_points['Conv2d_2b_3x3']),64,3,3,name=end_point)
                     # 189x621x64
                     end_point = 'fuse_4'
                     net = tf.concat([net, end_points['Conv2d_2b_3x3']], axis=3, name='fuse_4')

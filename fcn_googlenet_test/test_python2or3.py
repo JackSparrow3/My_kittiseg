@@ -7,16 +7,19 @@ x_image = tf.placeholder(tf.float32,shape=[3,2])
 x = tf.reshape(x_image,[1,3,2,1])
 
 #Filter: W  [kernel_height, kernel_width, output_depth, input_depth]
-W_cpu = np.array([[1,1]],dtype=np.float32)
-W = tf.Variable(W_cpu)
-W = tf.reshape(W, [1,2,1,1])
+# W_cpu = np.array([[1,1,1,1]],dtype=np.float32)
+W_cpu = np.random.rand(4)
+W_cpu = np.float32(W_cpu)
 
-strides=[1, 2, 2, 1]
+W = tf.Variable(W_cpu)
+W = tf.reshape(W, [1,4,1,1])
+
+strides=[1, 1, 1, 1]
 padding='VALID'
 
-y = tf.nn.conv2d_transpose(x, W, [1,3,3,1],strides, padding)
+y = tf.nn.conv2d_transpose(x, W, [1,4,3,1],strides, padding)
 # y_ = tf.nn.conv2d(x,W,strides=strides,padding=padding)
-x_data = np.array([[1,-1],[2,2],[1,2]],dtype=np.float32)
+x_data = np.array([[1,-1],[2,2],[1,2]],dtype=np.float64)
 with tf.Session() as sess:
     init = tf.initialize_all_variables()
     sess.run(init)
