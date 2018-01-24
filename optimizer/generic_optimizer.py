@@ -6,6 +6,7 @@ import logging
 import sys
 import tensorflow as tf
 import tensorflow.contrib.slim as slim
+from tensorflow.python.ops import control_flow_ops
 
 # def get_learning_rate(hypes, step):
 #    lr = hypes['solver']['learning_rate']
@@ -74,12 +75,16 @@ def training(hypes, loss, global_step, learning_rate, opt=None,var_list=None):
 
         hypes['opt'] = opt
 
-        train_op = slim.learning.create_train_op(total_loss,opt,global_step,clip_gradient_norm=hypes["clip_norm"])
-        # update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
-        # if update_ops:
-        #     updates = tf.group(*update_ops)
-        #     total_loss = opt.with_dependencies([updates], total_loss)
 
+        update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
+        if update_ops:
+            updates = tf.group(*update_ops)
+            total_loss = control_flow_ops.with_dependencies([updates], total_loss)
+
+        train_op = slim.learning.create_train_op(total_loss, opt, global_step,
+                                                     clip_gradient_norm=hypes["clip_norm"])
+        # train_op = slim.learning.create_train_op(total_loss, opt, global_step,
+        #                                              clip_gradient_norm=hypes["clip_norm"])
         # grads_and_vars = opt.compute_gradients(total_loss,var_list=var_list)
         #
         # if hypes['clip_norm'] > 0:
@@ -87,12 +92,12 @@ def training(hypes, loss, global_step, learning_rate, opt=None,var_list=None):
         #     clip_norm = hypes["clip_norm"]
         #     clipped_grads, norm = tf.clip_by_global_norm(grads, clip_norm)
         #     grads_and_vars = zip(clipped_grads, tvars)
-        # # a=slim.
-        # # train_op = opt.apply_gradients(grads_and_vars, global_step=global_step)
-        #
-        #
+        # a=slim.
+        # train_op = opt.apply_gradients(grads_and_vars, global_step=global_step)
+
+
         # update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
-        #
+        # #
         # with tf.control_dependencies(update_ops):
         #
         #     train_op = opt.apply_gradients(grads_and_vars,

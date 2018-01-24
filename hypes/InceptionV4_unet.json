@@ -48,8 +48,8 @@
 
   "logging": {
     "display_iter": 10,
-    "eval_iter": 40,
-    "write_iter": 1000,
+    "eval_iter": 400,
+    "write_iter": 2000,
     "save_iter": 10000,
     "image_iter": 20000
   },
@@ -60,7 +60,7 @@
       "epsilon": 0.000000001,
       "adam_eps": 0.00001,
       "threads": 4,
-      "learning_rate": 1e-5,
+      "learning_rate": 5e-6,
       "learning_rate_step": null,
       "max_steps": 200000,
       "dropout":0.5

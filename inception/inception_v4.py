@@ -366,14 +366,18 @@ def inception_v4(inputs, num_classes=2, is_training=True,
 						# 185x618x64
 						# TODO upsampling
 
+
 						end_point='fuse_4'
 						net=tf.concat([net,end_points['Conv2d_2b_3x3']],axis=3,name=end_point)
 						end_points[end_point]=net
 						# 189x621x128
+
 						end_point='fuse_4_conv_1'
-						net=slim.conv2d(net,64,[3,3],scope=end_point)
+						net=slim.conv2d(net,32,[3,3],scope=end_point)
 						end_points[end_point]=net
+
 						# 189x621x64
+
 						end_point='fuse_4_conv_2'
 						net=slim.conv2d(net,32,[3,3],scope=end_point)
 						end_points[end_point] = net
