@@ -701,7 +701,7 @@ def _reduced_kernel_size_for_small_input(input_tensor, kernel_size):
   return kernel_size_out
 
 
-print (1)
+
 
 inception_v3_arg_scope = inception_arg_scope
 

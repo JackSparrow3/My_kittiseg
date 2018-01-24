@@ -6,6 +6,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e1fe4ac-b661-4712-ac48-ff8b0ff7f51f" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/encoder/inceptionv3_randomsize.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hypes/InceptionV3_u_net_random.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/inception/inception_v3_randomsize.py" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../FCN_GoogLeNet/Data_zoo/MIT_SceneParsing/MITSceneParsing.pickle" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../FCN_GoogLeNet/logs/all/train/events.out.tfevents.1504791721.t03n09.pdc.kth.se" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../FCN_GoogLeNet/logs/all/validation/events.out.tfevents.1504791737.t03n09.pdc.kth.se" afterPath="" />
@@ -13,9 +16,15 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../FCN_GoogLeNet/inception_FCN.py" afterPath="$PROJECT_DIR$/../FCN_GoogLeNet/inception_FCN.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../FCN_GoogLeNet/inception_utils.py" afterPath="$PROJECT_DIR$/../FCN_GoogLeNet/inception_utils.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../FCN_GoogLeNet/inception_v3_fcn.py" afterPath="$PROJECT_DIR$/../FCN_GoogLeNet/inception_v3_fcn.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ResNet/resnet_v1_same_addinput.py" afterPath="$PROJECT_DIR$/ResNet/resnet_v1_same_addinput.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Train_Road_Detection_InceptionV3_u_net.py" afterPath="$PROJECT_DIR$/Train_Road_Detection_InceptionV3_u_net.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fcn_googlenet_test/check_image_shape.py" afterPath="$PROJECT_DIR$/fcn_googlenet_test/check_image_shape.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hypes/InceptionV4_unet.json" afterPath="$PROJECT_DIR$/hypes/InceptionV4_unet.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inception/inception_v4.py" afterPath="$PROJECT_DIR$/inception/inception_v4.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fcn_googlenet_test/test_python2or3.py" afterPath="$PROJECT_DIR$/fcn_googlenet_test/test_python2or3.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inception/inception_v3.py" afterPath="$PROJECT_DIR$/inception/inception_v3.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inception/inception_v3_u_net.py" afterPath="$PROJECT_DIR$/inception/inception_v3_u_net.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inception_utils.py" afterPath="$PROJECT_DIR$/inception_utils.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/submodules/TensorVision/tensorvision/train.py" afterPath="$PROJECT_DIR$/submodules/TensorVision/tensorvision/train.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,6 +36,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/KittiSeg$test_tf_argmax.coverage" NAME="test_tf-argmax Coverage Results" MODIFIED="1514182312234" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/KittiSeg$kitti_eval.coverage" NAME="kitti_eval Coverage Results" MODIFIED="1515034952962" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/evals" />
+    <SUITE FILE_PATH="coverage/KittiSeg$inception_v3_randomsize.coverage" NAME="inception_v3_randomsize Coverage Results" MODIFIED="1516785576462" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/inception" />
     <SUITE FILE_PATH="coverage/KittiSeg$Train_Road_Detection_InceptionV3_u_net_same.coverage" NAME="Train_Road_Detection_InceptionV3_u_net_same Coverage Results" MODIFIED="1515146682958" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/KittiSeg$shose.coverage" NAME="shose Coverage Results" MODIFIED="1514195390050" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/KittiSeg$Road_eval.coverage" NAME="Road_eval Coverage Results" MODIFIED="1516605790036" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -36,28 +46,82 @@
     <SUITE FILE_PATH="coverage/KittiSeg$Train_ResNetv2_unet.coverage" NAME="Train_ResNetv2_unet Coverage Results" MODIFIED="1516270062015" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/KittiSeg$resnet_v1.coverage" NAME="resnet_v1 Coverage Results" MODIFIED="1515036834558" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ResNet" />
     <SUITE FILE_PATH="coverage/KittiSeg$inception_FCN.coverage" NAME="inception_FCN Coverage Results" MODIFIED="1513759296819" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../FCN-GoogLeNet" />
-    <SUITE FILE_PATH="coverage/KittiSeg$check_image_shape.coverage" NAME="check_image_shape Coverage Results" MODIFIED="1516759698669" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fcn_googlenet_test" />
-    <SUITE FILE_PATH="coverage/KittiSeg$test_python2or3.coverage" NAME="test_python2or3 Coverage Results" MODIFIED="1516593021617" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fcn_googlenet_test" />
+    <SUITE FILE_PATH="coverage/KittiSeg$check_image_shape.coverage" NAME="check_image_shape Coverage Results" MODIFIED="1516788805175" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fcn_googlenet_test" />
+    <SUITE FILE_PATH="coverage/KittiSeg$test_python2or3.coverage" NAME="test_python2or3 Coverage Results" MODIFIED="1516785257980" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fcn_googlenet_test" />
     <SUITE FILE_PATH="coverage/KittiSeg$print_model_tensor_name.coverage" NAME="print_model_tensor_name Coverage Results" MODIFIED="1515481696496" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fcn_googlenet_test" />
     <SUITE FILE_PATH="coverage/KittiSeg$transform2BEV.coverage" NAME="transform2BEV Coverage Results" MODIFIED="1516612546951" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/devkit_road/python" />
     <SUITE FILE_PATH="coverage/KittiSeg$Road_demo.coverage" NAME="Road_demo Coverage Results" MODIFIED="1516593824355" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/KittiSeg$Train_Road_Detection_InceptionV3_concat.coverage" NAME="Train_Road_Detection_InceptionV3_concat Coverage Results" MODIFIED="1514874016179" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/KittiSeg$my_test.coverage" NAME="my-test Coverage Results" MODIFIED="1513238958687" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../FCN-GoogLeNet" />
-    <SUITE FILE_PATH="coverage/KittiSeg$Train_Road_Detection_InceptionV3.coverage" NAME="Train_Road_Detection_InceptionV3 Coverage Results" MODIFIED="1514541455664" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/KittiSeg$Train_Road_Detection_InceptionV3_u_net.coverage" NAME="Train_Road_Detection_InceptionV3_u_net Coverage Results" MODIFIED="1514971136556" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/KittiSeg$Train_Road_Detection_resnet_same_addinput.coverage" NAME="Train_Road_Detection_resnet_same_addinput Coverage Results" MODIFIED="1516011114057" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/KittiSeg$Train_Road_Detection_InceptionV3.coverage" NAME="Train-Road-Detection-InceptionV3 Coverage Results" MODIFIED="1516786556486" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/KittiSeg$Train_Road_Detection_InceptionV3_u_net.coverage" NAME="Train_Road_Detection_InceptionV3_u_net Coverage Results" MODIFIED="1516788625731" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/KittiSeg$transfrom_from_ckpt_to_npy.coverage" NAME="transfrom_from_ckpt_to_npy Coverage Results" MODIFIED="1514528842639" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../FCN_GoogLeNet/fcn_googlenet_test" />
     <SUITE FILE_PATH="coverage/KittiSeg$train.coverage" NAME="train Coverage Results" MODIFIED="1513907500821" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/KittiSeg$download_data.coverage" NAME="download_data Coverage Results" MODIFIED="1512613279119" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/KittiSeg$Train_Road_Detection_resnet_gcn.coverage" NAME="Train_Road_Detection_resnet_gcn Coverage Results" MODIFIED="1516244144066" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/KittiSeg$Train_Road_Detection_resnet_gcn.coverage" NAME="Train_Road_Detection_resnet_gcn Coverage Results" MODIFIED="1516780278725" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="readme.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/devkit_road/readme.txt">
+      <file leaf-file-name="inception_v3_randomsize.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/inception/inception_v3_randomsize.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-255">
-              <caret line="110" column="44" lean-forward="true" selection-start-line="110" selection-start-column="44" selection-end-line="110" selection-end-column="44" />
+            <state relative-caret-position="307">
+              <caret line="663" column="47" lean-forward="false" selection-start-line="663" selection-start-column="47" selection-end-line="663" selection-end-column="47" />
+              <folding>
+                <element signature="e#757#795#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="inception_utils.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/inception_utils.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="369">
+              <caret line="118" column="11" lean-forward="false" selection-start-line="118" selection-start-column="4" selection-end-line="118" selection-end-column="11" />
+              <folding>
+                <element signature="e#955#993#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Train_Road_Detection_InceptionV3_u_net.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Train_Road_Detection_InceptionV3_u_net.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="219">
+              <caret line="157" column="0" lean-forward="false" selection-start-line="157" selection-start-column="0" selection-end-line="157" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="train.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/incl/tensorvision/train.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="380" column="0" lean-forward="false" selection-start-line="380" selection-start-column="0" selection-end-line="380" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="inceptionv3_randomsize.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/encoder/inceptionv3_randomsize.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/.conda/envs/tf/lib/python2.7/site-packages/tensorflow/python/platform/app.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="279">
+              <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -66,71 +130,10 @@
       <file leaf-file-name="check_image_shape.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fcn_googlenet_test/check_image_shape.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InceptionV4_unet.json" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/hypes/InceptionV4_unet.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="21" column="22" lean-forward="true" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fcn8_incepV3_u_net.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/encoder/fcn8_incepV3_u_net.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="34" column="38" lean-forward="true" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="inception_v3_u_net.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/inception/inception_v3_u_net.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="737" column="40" lean-forward="false" selection-start-line="737" selection-start-column="31" selection-end-line="737" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="inception_v4.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/inception/inception_v4.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="388" column="49" lean-forward="false" selection-start-line="388" selection-start-column="49" selection-end-line="388" selection-end-column="49" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="inceptionv4_unet.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/encoder/inceptionv4_unet.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="34" column="39" lean-forward="true" selection-start-line="34" selection-start-column="39" selection-end-line="34" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="simpleExample_generateBEVResults.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/devkit_road/python/simpleExample_generateBEVResults.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="46" column="55" lean-forward="true" selection-start-line="46" selection-start-column="55" selection-end-line="46" selection-end-column="55" />
+            <state relative-caret-position="524">
+              <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
               <folding>
-                <element signature="n#!!doc" expanded="false" />
-                <element signature="e#492#565#0" expanded="false" />
+                <element signature="e#0#19#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -147,13 +150,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>conv2d_same</find>
-      <find>conv1</find>
-      <find>\+</find>
-      <find>fuse_3</find>
-      <find>BR_fuse</find>
-      <find>train_op</find>
-      <find>post_crf</find>
       <find>inceptionv3</find>
       <find>restore_Inceptionv3</find>
       <find>tf.Session()</find>
@@ -177,6 +173,13 @@
       <find>!=</find>
       <find>cur_prob</find>
       <find>im_end</find>
+      <find>conv</find>
+      <find>random_resize</find>
+      <find>print (2)</find>
+      <find>Session</find>
+      <find>Mixed_6a</find>
+      <find>max_pool2d</find>
+      <find>_upscore_layer</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -199,14 +202,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/RUNS/InceptionV3_u_net_bn_f1=96.2/model_files/eval.py" />
-        <option value="$PROJECT_DIR$/inception/inception_v3_u_net_same_gcn.py" />
-        <option value="$PROJECT_DIR$/Train_Road_Detection_InceptionV3_u_net_same.py" />
-        <option value="$PROJECT_DIR$/incl/tensorvision/utils.py" />
-        <option value="$PROJECT_DIR$/hypes/InceptionV3_u_net_same_gcn.json" />
-        <option value="$PROJECT_DIR$/encoder/fcn8_vgg.py" />
-        <option value="$PROJECT_DIR$/encoder/resnet_gcn.py" />
-        <option value="$PROJECT_DIR$/fcn_googlenet_test/print_model_tensor_name.py" />
         <option value="$PROJECT_DIR$/fcn_googlenet_test/test_tf_argmax.py" />
         <option value="$PROJECT_DIR$/incl/tensorflow_fcn/fcn8_vgg.py" />
         <option value="$PROJECT_DIR$/decoder/incepV3_loss.py" />
@@ -225,22 +220,18 @@
         <option value="$PROJECT_DIR$/encoder/resnet_v2_gcn.py" />
         <option value="$PROJECT_DIR$/ResNet/resnet_v3.py" />
         <option value="$PROJECT_DIR$/hypes/Resnet_gcn.json" />
-        <option value="$PROJECT_DIR$/inception_utils.py" />
         <option value="$PROJECT_DIR$/hypes/Resnet_v2_gcn.json" />
         <option value="$PROJECT_DIR$/Train_Road_Detection_resnet_same_addinput.py" />
         <option value="$PROJECT_DIR$/optimizer/generic_optimizer.py" />
         <option value="$PROJECT_DIR$/incl/tensorvision/core.py" />
-        <option value="$PROJECT_DIR$/incl/tensorvision/train.py" />
         <option value="$PROJECT_DIR$/encoder/resnet_v2-101_ppmgcn.py" />
         <option value="$PROJECT_DIR$/Train_ResNetv2_unet.py" />
         <option value="$PROJECT_DIR$/ResNet/resnet_utils.py" />
         <option value="$PROJECT_DIR$/ResNet/resnet_v2.py" />
         <option value="$PROJECT_DIR$/hypes/Resnet-v2_ppmgcn_101.json" />
-        <option value="$PROJECT_DIR$/fcn_googlenet_test/test_python2or3.py" />
         <option value="$PROJECT_DIR$/Road_demo.py" />
         <option value="$PROJECT_DIR$/evals/kitti_eval.py" />
         <option value="$PROJECT_DIR$/Road_eval.py" />
-        <option value="$PROJECT_DIR$/ResNet/resnet_v1_same_addinput.py" />
         <option value="$PROJECT_DIR$/devkit_road/python/evaluateRoad.py" />
         <option value="$PROJECT_DIR$/devkit_road/python/helper.py" />
         <option value="$PROJECT_DIR$/devkit_road/python/BirdsEyeView.py" />
@@ -248,8 +239,20 @@
         <option value="$PROJECT_DIR$/devkit_road/python/transform2BEV.py" />
         <option value="$PROJECT_DIR$/devkit_road/python/computeBaseline.py" />
         <option value="$PROJECT_DIR$/hypes/InceptionV4_unet.json" />
-        <option value="$PROJECT_DIR$/fcn_googlenet_test/check_image_shape.py" />
         <option value="$PROJECT_DIR$/inception/inception_v4.py" />
+        <option value="$PROJECT_DIR$/inception/inception_v3_ramdonsize.py" />
+        <option value="$PROJECT_DIR$/encoder/inceptionv3_randomsize.py" />
+        <option value="$PROJECT_DIR$/Train_Road_Detection_InceptionV3_u_net.py" />
+        <option value="$PROJECT_DIR$/inception/inception_v3.py" />
+        <option value="$PROJECT_DIR$/hypes/InceptionV3_u_net_random.json" />
+        <option value="$PROJECT_DIR$/submodules/TensorVision/tensorvision/train.py" />
+        <option value="$PROJECT_DIR$/ResNet/resnet_v1_same_addinput.py" />
+        <option value="$PROJECT_DIR$/inception_utils.py" />
+        <option value="$PROJECT_DIR$/fcn_googlenet_test/test_python2or3.py" />
+        <option value="$PROJECT_DIR$/inception/inception_v3_u_net.py" />
+        <option value="$PROJECT_DIR$/fcn_googlenet_test/check_image_shape.py" />
+        <option value="$PROJECT_DIR$/inception/inception_v3_randomsize.py" />
+        <option value="$PROJECT_DIR$/incl/tensorvision/train.py" />
       </list>
     </option>
   </component>
@@ -260,7 +263,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="325" />
+    <option name="x" value="438" />
     <option name="y" value="-4" />
     <option name="width" value="926" />
     <option name="height" value="852" />
@@ -384,6 +387,27 @@
             <path>
               <item name="KittiSeg" type="b2602c69:ProjectViewProjectNode" />
               <item name="KittiSeg" type="462c0819:PsiDirectoryNode" />
+              <item name="inception" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="KittiSeg" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KittiSeg" type="462c0819:PsiDirectoryNode" />
+              <item name="incl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="KittiSeg" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KittiSeg" type="462c0819:PsiDirectoryNode" />
+              <item name="incl" type="462c0819:PsiDirectoryNode" />
+              <item name="tensorflow_fcn" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="KittiSeg" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KittiSeg" type="462c0819:PsiDirectoryNode" />
+              <item name="ResNet" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="KittiSeg" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KittiSeg" type="462c0819:PsiDirectoryNode" />
               <item name="RUNS" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -397,6 +421,19 @@
               <item name="KittiSeg" type="462c0819:PsiDirectoryNode" />
               <item name="RUNS" type="462c0819:PsiDirectoryNode" />
               <item name="InceptionV3_u_net_bn_f1=96.2" type="462c0819:PsiDirectoryNode" />
+              <item name="model_files" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="KittiSeg" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KittiSeg" type="462c0819:PsiDirectoryNode" />
+              <item name="RUNS" type="462c0819:PsiDirectoryNode" />
+              <item name="Resnet_randomsize_f1=94.8" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="KittiSeg" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KittiSeg" type="462c0819:PsiDirectoryNode" />
+              <item name="RUNS" type="462c0819:PsiDirectoryNode" />
+              <item name="Resnet_randomsize_f1=94.8" type="462c0819:PsiDirectoryNode" />
               <item name="model_files" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -425,24 +462,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.check_image_shape">
-    <configuration name="Road_eval" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="KittiSeg" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Road_eval.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-    </configuration>
     <configuration name="Train-Road-Detection-InceptionV3" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -457,6 +476,42 @@
       <module name="KittiSeg" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Train-Road-Detection-InceptionV3.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
+    <configuration name="Train_Road_Detection_InceptionV3_u_net" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="KittiSeg" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Train_Road_Detection_InceptionV3_u_net.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
+    <configuration name="Train_Road_Detection_resnet_gcn" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="KittiSeg" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Train_Road_Detection_resnet_gcn.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -620,75 +675,57 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <configuration name="evaluateRoad" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="inception_v3_randomsize" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/devkit_road/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/inception" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="KittiSeg" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/devkit_road/python/evaluateRoad.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/inception/inception_v3_randomsize.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <configuration name="simpleExample_transformTestResults2BEV" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="test_python2or3" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/devkit_road/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/fcn_googlenet_test" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="KittiSeg" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/devkit_road/python/simpleExample_transformTestResults2BEV.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-    </configuration>
-    <configuration name="transform2BEV" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/devkit_road/python" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="KittiSeg" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/devkit_road/python/transform2BEV.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/fcn_googlenet_test/test_python2or3.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Python.Train-Road-Detection-InceptionV3" />
-      <item index="1" class="java.lang.String" itemvalue="Python.Road_eval" />
-      <item index="2" class="java.lang.String" itemvalue="Python.evaluateRoad" />
-      <item index="3" class="java.lang.String" itemvalue="Python.transform2BEV" />
-      <item index="4" class="java.lang.String" itemvalue="Python.simpleExample_transformTestResults2BEV" />
-      <item index="5" class="java.lang.String" itemvalue="Python.check_image_shape" />
+      <item index="1" class="java.lang.String" itemvalue="Python.check_image_shape" />
+      <item index="2" class="java.lang.String" itemvalue="Python.Train_Road_Detection_InceptionV3_u_net" />
+      <item index="3" class="java.lang.String" itemvalue="Python.Train_Road_Detection_resnet_gcn" />
+      <item index="4" class="java.lang.String" itemvalue="Python.test_python2or3" />
+      <item index="5" class="java.lang.String" itemvalue="Python.inception_v3_randomsize" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.check_image_shape" />
-        <item index="1" class="java.lang.String" itemvalue="Python.simpleExample_transformTestResults2BEV" />
-        <item index="2" class="java.lang.String" itemvalue="Python.transform2BEV" />
-        <item index="3" class="java.lang.String" itemvalue="Python.evaluateRoad" />
-        <item index="4" class="java.lang.String" itemvalue="Python.Road_eval" />
+        <item index="1" class="java.lang.String" itemvalue="Python.Train_Road_Detection_InceptionV3_u_net" />
+        <item index="2" class="java.lang.String" itemvalue="Python.inception_v3_randomsize" />
+        <item index="3" class="java.lang.String" itemvalue="Python.test_python2or3" />
+        <item index="4" class="java.lang.String" itemvalue="Python.Train_Road_Detection_resnet_gcn" />
       </list>
     </recent_temporary>
   </component>
@@ -719,20 +756,19 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976446" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45074946" sideWeight="0.50523996" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976446" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14668094" sideWeight="0.49476007" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36509636" sideWeight="0.49476007" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976446" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29564258" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930514" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34689507" sideWeight="0.4980695" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38972163" sideWeight="0.4980695" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984003" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -797,29 +833,9 @@
           <option name="timeStamp" value="215" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/inception/inception_v3.py</url>
-          <line>703</line>
-          <option name="timeStamp" value="234" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/inputs/kitti_seg_input.py</url>
-          <line>290</line>
-          <option name="timeStamp" value="240" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/fcn_googlenet_test/check_image_shape.py</url>
-          <line>55</line>
-          <option name="timeStamp" value="292" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/ResNet/resnet_v2.py</url>
           <line>302</line>
           <option name="timeStamp" value="311" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/fcn_googlenet_test/test_python2or3.py</url>
-          <line>5</line>
-          <option name="timeStamp" value="322" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/evals/kitti_eval.py</url>
@@ -856,6 +872,21 @@
           <line>87</line>
           <option name="timeStamp" value="346" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ResNet/resnet_v1_same_addinput.py</url>
+          <line>296</line>
+          <option name="timeStamp" value="362" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/fcn_googlenet_test/check_image_shape.py</url>
+          <line>49</line>
+          <option name="timeStamp" value="363" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/inception/inception_v3_randomsize.py</url>
+          <line>646</line>
+          <option name="timeStamp" value="368" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
@@ -867,90 +898,79 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="352" />
+      <option name="time" value="369" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Train_Road_Detection_resnet_gcn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1275">
-          <caret line="167" column="22" lean-forward="false" selection-start-line="167" selection-start-column="22" selection-end-line="167" selection-end-column="22" />
-        </state>
+    <entry file="file://$PROJECT_DIR$/RUNS/InceptionV3_u_net_bn_f1=96.2/images/1_um_000079.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.conda/envs/tf/lib/python2.7/site-packages/tensorflow/python/platform/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="596">
-          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-        </state>
+    <entry file="file://$PROJECT_DIR$/RUNS/InceptionV3_u_net_bn_f1=96.2/images/4_um_000079.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.conda/envs/tf/lib/python2.7/site-packages/numpy/lib/function_base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="626" column="71" lean-forward="true" selection-start-line="626" selection-start-column="71" selection-end-line="626" selection-end-column="71" />
-        </state>
+    <entry file="file://$PROJECT_DIR$/RUNS/InceptionV3_u_net_bn_f1=96.2/images/3_um_000079.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Train_inceptionv4_unet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2610">
-          <caret line="154" column="34" lean-forward="false" selection-start-line="154" selection-start-column="34" selection-end-line="154" selection-end-column="34" />
-        </state>
+    <entry file="file://$PROJECT_DIR$/RUNS/InceptionV3_u_net_bn_f1=96.2/images/5_um_000079.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/encoder/resnet_v2_gcn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="34" column="34" lean-forward="false" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
-        </state>
+    <entry file="file://$PROJECT_DIR$/RUNS/InceptionV3_u_net_bn_f1=96.2/images/6_um_000079.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/incl/tensorvision/train.py">
+    <entry file="file://$PROJECT_DIR$/RUNS/InceptionV3_u_net_bn_f1=96.2/images/7_um_000079.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RUNS/InceptionV3_u_net_bn_f1=96.2/images/8_um_000079.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RUNS/InceptionV3_u_net_bn_f1=96.2/images/9_um_000079.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RUNS/InceptionV3_u_net_bn_f1=96.2/model_files/hypes.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="373" column="43" lean-forward="false" selection-start-line="373" selection-start-column="43" selection-end-line="373" selection-end-column="43" />
+        <state relative-caret-position="360">
+          <caret line="41" column="25" lean-forward="false" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ResNet/resnet_utils.py">
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="545">
-          <caret line="269" column="31" lean-forward="false" selection-start-line="269" selection-start-column="31" selection-end-line="269" selection-end-column="31" />
-          <folding>
-            <element signature="e#4710#6462#1" expanded="false" />
-            <element signature="e#6464#6536#0" expanded="false" />
-            <element signature="e#8022#8984#1" expanded="false" />
-            <element signature="e#9603#9672#0" expanded="false" />
-            <element signature="e#14554#15132#0" expanded="false" />
-            <element signature="e#15173#15752#0" expanded="false" />
-            <element signature="e#15816#16401#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hypes/Resnet-v2_ppmgcn_101.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+        <state relative-caret-position="146">
+          <caret line="1025" column="0" lean-forward="false" selection-start-line="1025" selection-start-column="0" selection-end-line="1025" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/encoder/resnet_v2-101_ppmgcn.py">
+    <entry file="file://$USER_HOME$/.conda/envs/tf/lib/python2.7/site-packages/tensorflow/python/ops/array_ops.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="455">
-          <caret line="34" column="38" lean-forward="false" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
+        <state relative-caret-position="247">
+          <caret line="260" column="0" lean-forward="false" selection-start-line="260" selection-start-column="0" selection-end-line="260" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ResNet/resnet_v2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-403">
-          <caret line="214" column="32" lean-forward="false" selection-start-line="214" selection-start-column="30" selection-end-line="214" selection-end-column="32" />
+        <state relative-caret-position="2232">
+          <caret line="270" column="39" lean-forward="false" selection-start-line="270" selection-start-column="23" selection-end-line="270" selection-end-column="39" />
           <folding>
             <element signature="e#2064#2102#0" expanded="true" />
             <element signature="e#2578#3483#1" expanded="false" />
@@ -959,73 +979,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Train_ResNetv2_unet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="58" column="3" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/devkit_road/python/computingPipeline.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="43" column="28" lean-forward="false" selection-start-line="43" selection-start-column="19" selection-end-line="43" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/submodules/TensorVision/docs/modules/utils.rst">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="18" lean-forward="false" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.conda/envs/tf/lib/python2.7/site-packages/PIL/Image.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-961">
-          <caret line="1851" column="29" lean-forward="false" selection-start-line="1851" selection-start-column="23" selection-end-line="1851" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.conda/envs/tf/lib/python2.7/site-packages/scipy/misc/pilutil.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="220" column="14" lean-forward="true" selection-start-line="220" selection-start-column="14" selection-end-line="220" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.conda/envs/tf/lib/python2.7/site-packages/scipy/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1809">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fcn_googlenet_test/test_python2or3.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="14" lean-forward="true" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fcn_googlenet_test/print_model_tensor_name.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="12" lean-forward="false" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hypes/InceptionV3.json">
+    <entry file="file://$PROJECT_DIR$/Train_Road_Detection_InceptionV3_u_net_same.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1033,270 +987,320 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/incl/tensorvision/utils.py">
+    <entry file="file://$PROJECT_DIR$/hypes/InceptionV3_u_net_same.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-523">
-          <caret line="492" column="0" lean-forward="true" selection-start-line="492" selection-start-column="0" selection-end-line="492" selection-end-column="0" />
+        <state relative-caret-position="411">
+          <caret line="36" column="20" lean-forward="false" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RUNS/InceptionV3_u_net_same_f1=94.5/model_files/hypes.json">
+    <entry file="file://$PROJECT_DIR$/RUNS/InceptionV3_dropout=0.6_concat_1x1_f1=93.8/model_files/data_input.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-270">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="237">
+          <caret line="231" column="12" lean-forward="false" selection-start-line="231" selection-start-column="4" selection-end-line="231" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RUNS/Resnet_gcn_noresize_f1=92/model_files/hypes.json">
+    <entry file="file://$USER_HOME$/.conda/envs/tf/lib/python2.7/argparse.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-108">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="635">
+          <caret line="1466" column="0" lean-forward="false" selection-start-line="1466" selection-start-column="0" selection-end-line="1466" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.PyCharm2017.2/system/python_stubs/17702167/cv2/__init__.py">
+    <entry file="file://$PROJECT_DIR$/submodules/TensorVision/docs/user/tutorial.rst">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="2487" column="4" lean-forward="false" selection-start-line="2487" selection-start-column="4" selection-end-line="2487" selection-end-column="4" />
+        <state relative-caret-position="177">
+          <caret line="80" column="20" lean-forward="false" selection-start-line="80" selection-start-column="20" selection-end-line="80" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.conda/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/distributions/python/ops/operator_pd_cholesky.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="112" column="6" lean-forward="false" selection-start-line="112" selection-start-column="6" selection-end-line="112" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inception/inception_v3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="469">
+          <caret line="705" column="38" lean-forward="false" selection-start-line="705" selection-start-column="38" selection-end-line="705" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hypes/Resnet_same_randomresize.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="792">
+          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RUNS/InceptionV3_2018_01_24_14.25/model_files/data_input.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="293" column="40" lean-forward="false" selection-start-line="293" selection-start-column="29" selection-end-line="293" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hypes/Resnet_gcn_same_addinput.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="43" column="24" lean-forward="false" selection-start-line="43" selection-start-column="20" selection-end-line="43" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RUNS/Resnet_randomsize_f1=94.8/model_files/data_input.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="293" column="42" lean-forward="false" selection-start-line="293" selection-start-column="42" selection-end-line="293" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hypes/InceptionV3_u_net.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="43" column="25" lean-forward="false" selection-start-line="43" selection-start-column="25" selection-end-line="43" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/incl/tensorvision/core.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="80" column="4" lean-forward="false" selection-start-line="80" selection-start-column="4" selection-end-line="80" selection-end-column="4" />
+        <state relative-caret-position="169">
+          <caret line="141" column="0" lean-forward="false" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/evaluate.py">
+    <entry file="file://$USER_HOME$/.conda/envs/tf/lib/python2.7/site-packages/tensorflow/python/client/session.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="107" column="46" lean-forward="false" selection-start-line="107" selection-start-column="46" selection-end-line="107" selection-end-column="46" />
+        <state relative-caret-position="177">
+          <caret line="1034" column="0" lean-forward="false" selection-start-line="1034" selection-start-column="0" selection-end-line="1034" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RUNS/Resnet_randomsize_f1=94.8/model_files/hypes.json">
+    <entry file="file://$PROJECT_DIR$/encoder/resnet_gcn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-487">
-          <caret line="26" column="38" lean-forward="false" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
+        <state relative-caret-position="306">
+          <caret line="34" column="35" lean-forward="false" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Road_demo.py">
+    <entry file="file://$PROJECT_DIR$/encoder/resnet_same_addinput.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-407">
-          <caret line="207" column="20" lean-forward="false" selection-start-line="207" selection-start-column="8" selection-end-line="207" selection-end-column="20" />
+        <state relative-caret-position="227">
+          <caret line="34" column="30" lean-forward="false" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/encoder/fcn8_vgg.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-105">
+          <caret line="34" column="26" lean-forward="false" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/submodules/TensorVision/tensorvision/train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="373" column="20" lean-forward="false" selection-start-line="373" selection-start-column="20" selection-end-line="373" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inputs/kitti_seg_input.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="185" column="39" lean-forward="false" selection-start-line="185" selection-start-column="26" selection-end-line="185" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ResNet/resnet_v1_gcnsma_same.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1242">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Train_Road_Detection_resnet_gcn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="849">
+          <caret line="152" column="56" lean-forward="false" selection-start-line="152" selection-start-column="56" selection-end-line="152" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ResNet/resnet_utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="345" column="25" lean-forward="true" selection-start-line="345" selection-start-column="25" selection-end-line="345" selection-end-column="25" />
           <folding>
-            <element signature="e#566#604#0" expanded="true" />
+            <element signature="e#1725#1763#0" expanded="true" />
           </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.conda/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/layers/python/layers/layers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="2143" column="38" lean-forward="false" selection-start-line="2143" selection-start-column="38" selection-end-line="2143" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ResNet/resnet_v1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="201" column="45" lean-forward="false" selection-start-line="201" selection-start-column="45" selection-end-line="201" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/incl/tensorflow_fcn/fcn16_downsampled.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ResNet/resnet_v1_same_addinput.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="624">
-          <caret line="306" column="32" lean-forward="false" selection-start-line="306" selection-start-column="32" selection-end-line="306" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.conda/envs/tf/lib/python2.7/site-packages/numpy/core/getlimits.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="437" column="64" lean-forward="true" selection-start-line="437" selection-start-column="64" selection-end-line="437" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/evals/kitti_eval.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="34" column="30" lean-forward="false" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Road_eval.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="160" column="40" lean-forward="false" selection-start-line="160" selection-start-column="40" selection-end-line="160" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/incl/seg_utils/seg_utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-163">
-          <caret line="69" column="16" lean-forward="false" selection-start-line="69" selection-start-column="8" selection-end-line="69" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.conda/envs/tf/lib/python2.7/site-packages/numpy/core/fromnumeric.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="137" column="23" lean-forward="false" selection-start-line="137" selection-start-column="15" selection-end-line="137" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/devkit_road/python/helper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-830">
-          <caret line="179" column="20" lean-forward="false" selection-start-line="179" selection-start-column="20" selection-end-line="179" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/devkit_road/python/evaluateRoad.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="156" column="0" lean-forward="false" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="26" />
+        <state relative-caret-position="-814">
+          <caret line="256" column="52" lean-forward="false" selection-start-line="256" selection-start-column="38" selection-end-line="256" selection-end-column="52" />
           <folding>
-            <element signature="e#1009#1044#0" expanded="false" />
-            <element signature="e#5232#5343#0" expanded="false" />
+            <element signature="e#2216#2254#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/devkit_road/python/BirdsEyeView.py">
+    <entry file="file://$PROJECT_DIR$/incl/tensorflow_fcn/fcn8_vgg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="279" column="8" lean-forward="false" selection-start-line="279" selection-start-column="8" selection-end-line="279" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/devkit_road/python/transform2BEV.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="82" column="27" lean-forward="false" selection-start-line="82" selection-start-column="27" selection-end-line="82" selection-end-column="27" />
+        <state relative-caret-position="237">
+          <caret line="262" column="13" lean-forward="false" selection-start-line="262" selection-start-column="8" selection-end-line="262" selection-end-column="13" />
           <folding>
-            <element signature="e#383#420#0" expanded="true" />
-            <element signature="e#3456#4546#0" expanded="false" />
+            <element signature="e#0#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/devkit_road/python/simpleExample_evalTrainResults.py">
+    <entry file="file://$PROJECT_DIR$/hypes/InceptionV3_u_net_random.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="23" column="2" lean-forward="true" selection-start-line="23" selection-start-column="2" selection-end-line="23" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/devkit_road/python/simpleExample_transformTestResults2BEV.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="48" column="53" lean-forward="false" selection-start-line="48" selection-start-column="46" selection-end-line="48" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/devkit_road/python/simpleExample_generateBEVResults.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="46" column="55" lean-forward="true" selection-start-line="46" selection-start-column="55" selection-end-line="46" selection-end-column="55" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#492#565#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.conda/envs/tf/lib/python2.7/glob.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/devkit_road/readme.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-255">
-          <caret line="110" column="44" lean-forward="true" selection-start-line="110" selection-start-column="44" selection-end-line="110" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/inception_utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-549">
-          <caret line="31" column="4" lean-forward="false" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/devkit_road/python/computeBaseline.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="106" column="16" lean-forward="false" selection-start-line="106" selection-start-column="16" selection-end-line="106" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RUNS/InceptionV3_u_net_bn_f1=96.2/model_files/hypes.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="41" column="23" lean-forward="false" selection-start-line="41" selection-start-column="19" selection-end-line="41" selection-end-column="23" />
+        <state relative-caret-position="894">
+          <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/encoder/fcn8_incepV3_u_net.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="34" column="38" lean-forward="true" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fcn_googlenet_test/check_image_shape.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+        <state relative-caret-position="289">
+          <caret line="34" column="46" lean-forward="false" selection-start-line="34" selection-start-column="46" selection-end-line="34" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inception/inception_v3_u_net.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="737" column="40" lean-forward="false" selection-start-line="737" selection-start-column="31" selection-end-line="737" selection-end-column="40" />
+        <state relative-caret-position="372">
+          <caret line="728" column="67" lean-forward="false" selection-start-line="728" selection-start-column="54" selection-end-line="728" selection-end-column="67" />
+          <folding>
+            <element signature="e#757#795#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.conda/envs/tf/lib/python2.7/site-packages/tensorflow/python/ops/nn_ops.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="1005" column="4" lean-forward="false" selection-start-line="1005" selection-start-column="4" selection-end-line="1005" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/inception/inception_v4.py">
+    <entry file="file://$PROJECT_DIR$/fcn_googlenet_test/test_python2or3.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="388" column="49" lean-forward="false" selection-start-line="388" selection-start-column="49" selection-end-line="388" selection-end-column="49" />
+        <state relative-caret-position="162">
+          <caret line="9" column="20" lean-forward="false" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fcn_googlenet_test/check_image_shape.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="524">
+          <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.conda/envs/tf/lib/python2.7/site-packages/tensorflow/python/platform/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/encoder/inceptionv4_unet.py">
+    <entry file="file://$PROJECT_DIR$/Train_Road_Detection_InceptionV3_u_net.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="34" column="39" lean-forward="true" selection-start-line="34" selection-start-column="39" selection-end-line="34" selection-end-column="39" />
+        <state relative-caret-position="219">
+          <caret line="157" column="0" lean-forward="false" selection-start-line="157" selection-start-column="0" selection-end-line="157" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hypes/InceptionV4_unet.json">
+    <entry file="file://$PROJECT_DIR$/incl/tensorvision/train.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="21" column="22" lean-forward="true" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+        <state relative-caret-position="189">
+          <caret line="380" column="0" lean-forward="false" selection-start-line="380" selection-start-column="0" selection-end-line="380" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/encoder/inceptionv3_randomsize.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inception/inception_v3_randomsize.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="663" column="47" lean-forward="false" selection-start-line="663" selection-start-column="47" selection-end-line="663" selection-end-column="47" />
+          <folding>
+            <element signature="e#757#795#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inception_utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="118" column="11" lean-forward="false" selection-start-line="118" selection-start-column="4" selection-end-line="118" selection-end-column="11" />
+          <folding>
+            <element signature="e#955#993#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

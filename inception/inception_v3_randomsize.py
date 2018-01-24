@@ -21,8 +21,9 @@ from __future__ import print_function
 import tensorflow as tf
 
 from inception_utils import inception_arg_scope
-
-import tensorflow.contrib.slim as slim
+from inception_utils import _upscore_layer as _upscore_layer
+from inception_utils import conv as conv
+slim = tf.contrib.slim
 trunc_normal = lambda stddev: tf.truncated_normal_initializer(0.0, stddev)
 
 tf.get_default_graph().get_all_collection_keys()
@@ -108,15 +109,15 @@ def inception_v3_base(inputs,
             if end_point == final_endpoint: return net, end_points
             # 149 x 149 x 32
             end_point = 'Conv2d_2a_3x3'
-            net = slim.conv2d(net, depth(32), [3, 3], scope=end_point)
+            net = slim.conv2d(net, depth(32), [3, 3], padding='SAME',scope=end_point)
             end_points[end_point] = net
             if end_point == final_endpoint: return net, end_points
-            # 147 x 147 x 32
+            # 149 x 149 x 32
             end_point = 'Conv2d_2b_3x3'
             net = slim.conv2d(net, depth(64), [3, 3], padding='SAME', scope=end_point)
             end_points[end_point] = net
             if end_point == final_endpoint: return net, end_points
-            # 147 x 147 x 64
+            # 149 x 149 x 64
             end_point = 'MaxPool_3a_3x3'
             net = slim.max_pool2d(net, [3, 3], stride=2, scope=end_point)
             end_points[end_point] = net
@@ -128,10 +129,10 @@ def inception_v3_base(inputs,
             if end_point == final_endpoint: return net, end_points
             # 73 x 73 x 80.
             end_point = 'Conv2d_4a_3x3'
-            net = slim.conv2d(net, depth(192), [3, 3], scope=end_point)
+            net = slim.conv2d(net, depth(192), [3, 3], padding='SAME',scope=end_point)
             end_points[end_point] = net
             if end_point == final_endpoint: return net, end_points
-            # 71 x 71 x 192.
+            # 73 x 73 x 192.
             end_point = 'MaxPool_5a_3x3'
             net = slim.max_pool2d(net, [3, 3], stride=2, scope=end_point)
             end_points[end_point] = net
@@ -640,13 +641,7 @@ def inception_v3_fcn(inputs,
             with tf.variable_scope('Upsampling'):
                 with slim.arg_scope([slim.conv2d_transpose], stride=2, padding='VALID', activation_fn=None,
                                     normalizer_fn=None):  # TODO CHANGE padding to SAME
-                    # 1 x 1 x 1000
-                    # the depth can be obtained auto
-                    # now it's hard coded
-                    # deconv_shape1 = end_points['Mixed_6d'].get_shape()
-                    # deconv_shape2 = end_points['Mixed_5c'].get_shape()
-                    # tmp_deconv_shape3 = tf.shape(inputs)
-                    # deconv_shape3 = tf.stack([tmp_deconv_shape3[0], tmp_deconv_shape3[1], tmp_deconv_shape3[2], num_classes])
+
                     # TODO: check dimension order
                     # 10x37x2048
                     end_point='mixe_7c_conv_1'
@@ -666,26 +661,26 @@ def inception_v3_fcn(inputs,
                     end_points[end_point] = net
                     # 10x37x1280
                     end_point = "Conv2d_Trans_1"
-                    net = slim.conv2d_transpose(net, 768, [4, 4], scope='Conv2d_Trans_1', padding='VALID')
-                    end_points[end_point] = net
-                    # 22x7x768
+                    net, end_points= _upscore_layer(net,end_points,tf.shape(end_points['Mixed_6e']),depth=768,
+                                                    wkersize=4,hkersize=4,name=end_point)
+                    #3,3
+                    # 24x75x768
                     # TODO upsampling
 
                     end_point = 'fuse_1'
                     net = tf.concat([net,end_points['Mixed_6e']],axis=3,name='fuse_1')
                     end_points[end_point] = net
-                    # 22x7x1536
+                    # 21x75x1536
                     end_point='fuse_1_conv_1'
-                    net=slim.conv2d(net,depth(768),[3,3],stride=1,padding='SAME',scope='fuse_1_conv_1')
-                    end_points[end_point]=net
-                    # 22x7x768
+                    net,end_points=conv(net,end_points,[3,3,1536,768],name=end_point)
+
+                    # 21x75x768
                     end_point='fuse_1_conv_2'
                     net=slim.conv2d(net,depth(768),[3,3],stride=1,padding='SAME',scope='fuse_1_conv_2')
                     end_points[end_point]=net
-                    # 22x7x768
-                    net = slim.conv2d_transpose(net, 288, [3, 3], scope='Conv2d_Trans_2')
+                    # 21x75x768
                     end_point = "Conv2d_Trans_2"
-                    end_points[end_point] = net
+                    net, end_points=_upscore_layer(net,end_points,tf.shape(end_points['Mixed_5d']),288,4,4,name=end_point)
                     # 45x153x288
                     # TODO upsampling
 
@@ -694,8 +689,7 @@ def inception_v3_fcn(inputs,
                     end_points[end_point]=net
                     # 45x153x576
                     end_point='fuse_2_conv_1'
-                    net = slim.conv2d(net, depth(288), [3, 3], stride=1, padding='SAME', scope='fuse_2_conv_1')
-                    end_points[end_point]=net
+                    net,end_points=conv(net,end_points,[3,3,576,288],name=end_point)
                     # 45x153x288
                     end_point = 'fuse_2_conv_2'
                     net = slim.conv2d(net, depth(288), [3, 3], stride=1, padding='SAME', scope='fuse_2_conv_2')
@@ -704,16 +698,15 @@ def inception_v3_fcn(inputs,
                     # TODO upsampling
 
                     end_point = "Conv2d_Trans_3"
-                    net = slim.conv2d_transpose(net, 192, [4, 4], scope='Conv2d_Trans_3', padding='VALID')
-                    end_points[end_point] = net
+                    net,end_points=_upscore_layer(net,end_points,tf.shape(end_points['Conv2d_4a_3x3']),192,3,3,name=end_point)
+
                     # 92x308x192
                     end_point = 'fuse_3'
                     net = tf.concat([net, end_points['Conv2d_4a_3x3']], axis=3, name='fuse_3')
                     end_points[end_point] = net
                     # 92x308x384
                     end_point ='fuse_3_conv_1'
-                    net = slim.conv2d(net, depth(192), [3, 3], stride=1, padding='SAME', scope='fuse_3_conv_1')
-                    end_points[end_point] = net
+                    net,end_points=conv(net,end_points,[3,3,384,192],name=end_point)
                     # 92x308x192
                     end_point = 'fuse_3_conv_2'
                     net = slim.conv2d(net, depth(192), [3, 3], stride=1, padding='SAME', scope='fuse_3_conv_2')
@@ -722,16 +715,14 @@ def inception_v3_fcn(inputs,
                     # TODO upsampling
 
                     end_point = "Conv2d_Trans_4"
-                    net = slim.conv2d_transpose(net, 64, [7, 7], scope='Conv2d_Trans_4', padding='VALID')
-                    end_points[end_point] = net
+                    net,end_points=_upscore_layer(net,end_points,tf.shape(end_points['Conv2d_2b_3x3']),64,3,2,name=end_point)
                     # 189x621x64
                     end_point = 'fuse_4'
                     net = tf.concat([net, end_points['Conv2d_2b_3x3']], axis=3, name='fuse_4')
                     end_points[end_point] = net
                     # 189x621x128
                     end_point='fuse_4_conv_1'
-                    net = slim.conv2d(net, depth(64), [3, 3], stride=1, padding='SAME', scope='fuse_4_conv_1')
-                    end_points[end_point] = net
+                    net,end_points=conv(net,end_points,[3,3,128,64],name=end_point)
                     # 189x621x64
                     end_point = 'fuse_4_conv_2'
                     net = slim.conv2d(net, depth(32), [3, 3], stride=1, padding='SAME', scope='fuse_4_conv_2')
@@ -739,15 +730,16 @@ def inception_v3_fcn(inputs,
                     # 189x621x32
                     # TODO upsampling
 
-                    logits = slim.conv2d_transpose(net, num_classes, [8, 8], stride=2, scope='Conv2d_Trans_5')
+                    net,end_points = _upscore_layer(net,end_points,tf.shape(inputs),num_classes,3,4,name='Conv2d_Trans_5')
+
                     # # this is without skip 'fuse'
                     # net = slim.stack(net, slim.conv2d_transpose, [(depth, [kernel_size]),(another_one)], scope='UpsamplingStack')
-            end_points['Upsampling'] = logits
+
             # 384x1248x2
             # size of the output TODO
-            annotation_pred = tf.argmax(logits, axis=3, name="annotation_prediction")
-            end_points['AnnotationPrediction'] = annotation_pred
-    return tf.expand_dims(annotation_pred, axis=3), logits, end_points
+            # annotation_pred = tf.argmax(logits, axis=3, name="annotation_prediction")
+            # end_points['AnnotationPrediction'] = annotation_pred
+    return net, end_points
 
 
 inception_v3_fcn.default_image_size = 224

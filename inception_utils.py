@@ -27,7 +27,8 @@ from __future__ import print_function
 import tensorflow as tf
 
 import tensorflow.contrib.slim as slim
-
+import numpy as np
+from math import ceil
 
 def inception_arg_scope(weight_decay=5e-4,
                         use_batch_norm=True,
@@ -45,7 +46,7 @@ def inception_arg_scope(weight_decay=5e-4,
   Returns:
     An `arg_scope` to use for the inception models.
   """
-  print (2)
+
   batch_norm_params = {
       # Decay for the moving averages.
       'decay': batch_norm_decay,
@@ -105,5 +106,56 @@ def ppm(input,end_points,name=None):
     net=slim.conv2d(net,1,[1,1],stride=1,padding='SAME',scope=end_point)
     end_points[end_point]=net
 
+def _upscore_layer(input, end_points=None, out_shape=None,depth=None, wkersize=None,hkersize=None,stride=2, padding='VALID', name=None):
+  end_point=name
+  strides = [1, stride, stride, 1]
+  with tf.variable_scope(name):
+    new_shape=[1,out_shape[1],out_shape[2],depth]
+    # out_shape=tf.convert_to_tensor(new_shape)
+    # new_shape = tf.stack(new_shape)
+    in_channel = input.get_shape()[3].value
+    out_channel=depth
+    f_shape=[wkersize,hkersize,out_channel,in_channel]
+    weights=_get_deconv_filter(f_shape=f_shape)
 
+    net = tf.nn.conv2d_transpose(input, weights, output_shape=new_shape,
+	                        strides=strides, padding=padding, name=end_point)
+    end_points[end_point]=net
+    return net , end_points
+
+def _get_deconv_filter(f_shape=None):
+  width = f_shape[0]
+  heigh = f_shape[1]
+  f = ceil(width / 2.0)
+  c = (2 * f - 1 - f % 2) / (2.0 * f)
+  bilinear = np.zeros([f_shape[0], f_shape[1]])
+  for x in range(width):
+    for y in range(heigh):
+      value = (1 - abs(x / f - c)) * (1 - abs(y / f - c))
+      bilinear[x, y] = value
+  weights = np.zeros(f_shape)
+  for i in range(f_shape[2]):
+    weights[:, :, i, i] = bilinear
+
+    init = tf.constant_initializer(value=weights,
+	                               dtype=tf.float32)
+    var = tf.get_variable(name="up_filter", initializer=init,
+	                      shape=weights.shape)
+    return var
+
+def conv(input,end_points,shape=None,wd=0.00004,name=None,):
+  end_point=name
+  var_init=slim.xavier_initializer()
+  var=tf.get_variable(name=name+'filter',shape=shape,dtype=tf.float32,initializer=var_init)
+  # add to l2 loss
+  weigh_deacy=tf.multiply(tf.nn.l2_loss(var),wd,name=name+'filter_wd')
+  tf.add_to_collection(tf.GraphKeys.REGULARIZATION_LOSSES,weigh_deacy)
+
+  bias_init=tf.constant(0.1,shape=[shape[3]],name=end_point+'bias')
+  biases=tf.get_variable(name=name+'biases',initializer=bias_init)
+
+  conv = tf.nn.conv2d(input, var, [1, 1, 1, 1], 'SAME', name=end_point)
+  net=tf.nn.relu(conv+biases)
+  end_points[end_point]=net
+  return net, end_points
 

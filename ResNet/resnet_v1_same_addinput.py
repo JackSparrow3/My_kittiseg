@@ -272,12 +272,12 @@ def resnet_v1(inputs,
 					# 94x311x256
 					end_point='trans_3'
 					if is_training is False:
-						net, end_points = _upscore_layer(net, end_points, tf.shape(end_points['Validation/resnet_v1_50/conv_1']),
+						net, end_points = _upscore_layer(net, end_points, tf.shape(end_points['Validation/Validation/resnet_v1_50/conv_1']),
 						                                 depth=64,
 						                                 wkersize=2, hkersize=2, name=end_point)
 						# 188x621x64
 						end_point = 'fuse_3'
-						net = tf.concat([net, end_points['Validation/resnet_v1_50/conv_1']], axis=3, name=end_point)
+						net = tf.concat([net, end_points['Validation/Validation/resnet_v1_50/conv_1']], axis=3, name=end_point)
 						end_points[end_point] = net
 					else:
 						net, end_points = _upscore_layer(net, end_points, tf.shape(end_points['resnet_v1_50/conv_1']),depth=64,
