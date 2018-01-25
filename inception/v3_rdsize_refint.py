@@ -23,7 +23,7 @@ import tensorflow as tf
 from inception_utils import inception_arg_scope
 from inception_utils import _upscore_layer as _upscore_layer
 from inception_utils import conv as conv
-slim = tf.contrib.slim
+import tensorflow.contrib.slim as slim
 trunc_normal = lambda stddev: tf.truncated_normal_initializer(0.0, stddev)
 
 tf.get_default_graph().get_all_collection_keys()
@@ -652,12 +652,27 @@ def inception_v3_fcn(inputs,
                     net=tf.concat([net,end_points['Mixed_7a']],axis=3,name='fuse_0')
                     end_points[end_point]=net
                     # 10x37x2560
-                    end_point='fuse_0_conv_1'
-                    net=slim.conv2d(net,depth(1280),[3,3],stride=1,padding='SAME',scope='fuse_0_conv_1')
-                    end_points[end_point]=net
-                    # 10x37x1280
-                    end_point = 'fuse_0_conv_2'
-                    net = slim.conv2d(net, depth(1280), [3, 3], stride=1, padding='SAME', scope='fuse_0_conv_2')
+                    end_point = 'Mixed_fuse_0'
+                    with tf.variable_scope(end_point):
+                        with tf.variable_scope('Branch_0'):
+                            branch_0 = slim.conv2d(net, depth(320), [1, 1], scope='Conv2d_0a_1x1')
+                        with tf.variable_scope('Branch_1'):
+                            branch_1 = slim.conv2d(net, depth(384), [1, 1], scope='Conv2d_0a_1x1')
+                            branch_1 = tf.concat(axis=3, values=[
+			                    slim.conv2d(branch_1, depth(384), [1, 3], scope='Conv2d_0b_1x3'),
+			                    slim.conv2d(branch_1, depth(384), [3, 1], scope='Conv2d_0c_3x1')])
+                        with tf.variable_scope('Branch_2'):
+                            branch_2 = slim.conv2d(net, depth(448), [1, 1], scope='Conv2d_0a_1x1')
+                            branch_2 = slim.conv2d(
+			                    branch_2, depth(384), [3, 3], scope='Conv2d_0b_3x3')
+                            branch_2 = tf.concat(axis=3, values=[
+			                    slim.conv2d(branch_2, depth(384), [1, 3], scope='Conv2d_0c_1x3'),
+			                    slim.conv2d(branch_2, depth(384), [3, 1], scope='Conv2d_0d_3x1')])
+                        with tf.variable_scope('Branch_3'):
+                            branch_3 = slim.avg_pool2d(net, [3, 3],1,'SAME', scope='AvgPool_0a_3x3')
+                            branch_3 = slim.conv2d(
+			                    branch_3, depth(192), [1, 1], scope='Conv2d_0b_1x1')
+                        net = tf.concat(axis=3, values=[branch_0, branch_1, branch_2, branch_3])
                     end_points[end_point] = net
                     # 10x37x1280
                     end_point = "Conv2d_Trans_1"
@@ -665,7 +680,6 @@ def inception_v3_fcn(inputs,
                     net, end_points= _upscore_layer(net,end_points,tf.shape(end_points['Mixed_6b']),depth=768,
                                                     wkersize=3,hkersize=3,name=end_point)
 
-                    #3,3
                     # 24x75x768
                     # TODO upsampling
 
@@ -673,13 +687,37 @@ def inception_v3_fcn(inputs,
                     net = tf.concat([net,end_points['Mixed_6e']],axis=3,name='fuse_1')
                     end_points[end_point] = net
                     # 21x75x1536
-                    end_point='fuse_1_conv_1'
-                    net,end_points=conv(net,end_points,[3,3,1536,768],name=end_point)
 
-                    # 21x75x768
-                    end_point='fuse_1_conv_2'
-                    net=slim.conv2d(net,depth(768),[3,3],stride=1,padding='SAME',scope='fuse_1_conv_2')
-                    end_points[end_point]=net
+                    end_point = 'Mixed_fuse_1'
+                    with tf.variable_scope(end_point):
+                        with tf.variable_scope('Branch_0'):
+                            branch_0,end_points =conv(net,end_points,[1,1,1536,192],
+                                                   name='Conv2d_0a_1x1')
+                        with tf.variable_scope('Branch_1'):
+                            branch_1 ,end_points = conv(net,end_points,[1,1,1536,160],
+                                                   name='Conv2d_0a_1x1')
+                            branch_1 = slim.conv2d(branch_1, depth(160), [1, 7],
+		                                           scope='Conv2d_0b_1x7')
+                            branch_1 = slim.conv2d(branch_1, depth(192), [7, 1],
+		                                           scope='Conv2d_0c_7x1')
+                        with tf.variable_scope('Branch_2'):
+                            branch_2, end_points=conv(net,end_points,[1,1,1536,160],
+                                                   name='Conv2d_0a_1x1')
+                            branch_2 = slim.conv2d(branch_2, depth(160), [7, 1],
+		                                           scope='Conv2d_0b_7x1')
+                            branch_2 = slim.conv2d(branch_2, depth(160), [1, 7],
+		                                           scope='Conv2d_0c_1x7')
+                            branch_2 = slim.conv2d(branch_2, depth(160), [7, 1],
+		                                           scope='Conv2d_0d_7x1')
+                            branch_2 = slim.conv2d(branch_2, depth(192), [1, 7],
+		                                           scope='Conv2d_0e_1x7')
+                        with tf.variable_scope('Branch_3'):
+                            branch_3 = slim.avg_pool2d(net, [3, 3],1,'SAME', scope='AvgPool_0a_3x3')
+                            branch_3 ,end_points=conv(branch_3,end_points,[1,1,1536,192],
+                                                   name='Conv2d_0b_1x1')
+                        net = tf.concat(axis=3, values=[branch_0, branch_1, branch_2, branch_3])
+                    end_points[end_point] = net
+
                     # 21x75x768
                     end_point = "Conv2d_Trans_2"
                     net, end_points=_upscore_layer(net,end_points,tf.shape(end_points['Mixed_5d']),288,3,3,name=end_point)
@@ -690,12 +728,30 @@ def inception_v3_fcn(inputs,
                     net = tf.concat([net,end_points['Mixed_5d']],axis=3,name='fuse_2')
                     end_points[end_point]=net
                     # 45x153x576
-                    end_point='fuse_2_conv_1'
-                    net,end_points=conv(net,end_points,[3,3,576,288],name=end_point)
-                    # 45x153x288
-                    end_point = 'fuse_2_conv_2'
-                    net = slim.conv2d(net, depth(288), [3, 3], stride=1, padding='SAME', scope='fuse_2_conv_2')
+                    end_point = 'Mixed_fuse_2'
+                    with tf.variable_scope(end_point):
+                        with tf.variable_scope('Branch_0'):
+                            branch_0,end_points=conv(net,end_points,[1,1,576,64],
+                                                   name='Conv2d_0a_1x1')
+                        with tf.variable_scope('Branch_1'):
+                            branch_1, end_points = conv(net,end_points,[1,1,576,48],
+                                                   name='Conv2d_0a_1x1')
+                            branch_1 = slim.conv2d(branch_1, depth(64), [5, 5],
+		                                           scope='Conv_1_0b_5x5')
+                        with tf.variable_scope('Branch_2'):
+                            branch_2, end_points = conv(net,end_points,[1,1,576,64],
+                                                   name='Conv2d_0a_1x1')
+                            branch_2 = slim.conv2d(branch_2, depth(96), [3, 3],
+		                                           scope='Conv2d_0b_3x3')
+                            branch_2 = slim.conv2d(branch_2, depth(96), [3, 3],
+		                                           scope='Conv2d_0c_3x3')
+                        with tf.variable_scope('Branch_3'):
+                            branch_3 = slim.avg_pool2d(net, [3, 3],1,'SAME', scope='AvgPool_0a_3x3')
+                            branch_3, end_points = conv(branch_3, end_points, [1, 1, 576, 64],
+                                                   name='Conv2d_0b_1x1')
+                        net = tf.concat(axis=3, values=[branch_0, branch_1, branch_2, branch_3])
                     end_points[end_point] = net
+
                     # 45x153x288
                     # TODO upsampling
 

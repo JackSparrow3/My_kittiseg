@@ -161,7 +161,7 @@ def train_loop(myhypes=None):
 def main(_):
     # train_loop('hypes/InceptionV3.json')
     # train_loop('hypes/InceptionV3_concat.json')
-    train_loop('hypes/InceptionV3_u_net_random.json')
+    train_loop('hypes/v3_random_refine.json')
 
 
 

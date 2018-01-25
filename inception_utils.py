@@ -156,6 +156,7 @@ def conv(input,end_points,shape=None,wd=0.00004,name=None,):
 
   conv = tf.nn.conv2d(input, var, [1, 1, 1, 1], 'SAME', name=end_point)
   net=tf.nn.relu(conv+biases)
+
   end_points[end_point]=net
   return net, end_points
 

@@ -34,7 +34,7 @@ class dataStructure:
     im_end = '.png.npy'
     gt_end = '.png'
     # prob_end = '.png'
-    prob_end = '.png.npy'
+    prob_end = '.png'
     eval_propertyList = ['MaxF', 'AvgPrec', 'PRE_wp', 'REC_wp', 'FPR_wp', 'FNR_wp' ] 
 
 #########################################################################
@@ -68,6 +68,8 @@ def main(result_dir, train_dir, debug = False):
     for cat in dataStructure.cats:
         print "Execute evaluation for category %s ..." %cat
         fn_search  = '%s*%s' %(cat, dataStructure.gt_end)
+        prob_fileList = glob(os.path.join(result_dir,fn_search))
+        assert len(prob_fileList) > 0, 'Error reading ground truth'
         gt_fileList = glob(os.path.join(gt_dir, fn_search))
         assert len(gt_fileList)>0, 'Error reading ground truth'
         # Init data for categgory
@@ -77,7 +79,8 @@ def main(result_dir, train_dir, debug = False):
         totalPosNum = 0
         totalNegNum = 0
         
-        firstFile  = gt_fileList[0]
+        # firstFile  = gt_fileList[0]
+        firstFile = prob_fileList[0]
         file_key = firstFile.split('/')[-1].split('.')[0]
         tags = file_key.split('_')
         ts_tag = tags[2]
@@ -86,68 +89,125 @@ def main(result_dir, train_dir, debug = False):
         
         submission_tag = dataset_tag + '_' + class_tag + '_'
         print "Searching for submitted files with prefix: %s" %submission_tag
-        
-        for fn_curGt in gt_fileList:
-            
-            file_key = fn_curGt.split('/')[-1].split('.')[0]
-            file_key_1,file_key_2,file_key_3=file_key.split('_')
-            _file_key=file_key_1+'_'+file_key_3
+
+        for prob_cur in prob_fileList:
+            file_key = prob_cur.split('/')[-1].split('.')[0]
+            file_key_1, file_key_2, file_key_3 = file_key.split('_')
+            _file_key = file_key_1 + '_'+file_key_2 +'_'+ file_key_3
             if debug:
-                print "Processing file: %s " %file_key
-            
+                print "Processing file: %s " % file_key
+
             # get tags
             tags = file_key.split('_')
             ts_tag = tags[2]
             dataset_tag = tags[0]
             class_tag = tags[1]
-            
 
-            # Read GT
-            cur_gt, validArea = getGroundTruth(fn_curGt)
-                        
-            # Read probmap and normalize
-            fn_curProb = os.path.join(submission_dir, _file_key + dataStructure.prob_end)
-            
-            if not os.path.isfile(fn_curProb):
-                print "Cannot find file: %s for category %s." %(_file_key, cat)
+
+
+            cur_prob = cv2.imread(prob_cur, 0)
+
+            fn_curGt = os.path.join(gt_dir, _file_key + dataStructure.prob_end)
+            if not os.path.isfile(fn_curGt):
+                print "Cannot find file: %s for category %s." %(fn_curGt, cat)
                 print "--> Will now abort evaluation for this particular category."
                 category_ok = False
                 break
-            
-            # cur_prob = cv2.imread(fn_curProb,0)
-            cur_prob = np.load(fn_curProb)
-            # cur_prob = np.clip( (cur_prob.astype('f4'))/(np.iinfo(cur_prob.dtype).max),0.,1.)
-            
-            FN, FP, posNum, negNum = evalExp(cur_gt, cur_prob, thresh, validMap = None, validArea=validArea)
-            
-            assert FN.max()<=posNum, 'BUG @ poitive samples'
-            assert FP.max()<=negNum, 'BUG @ negative samples'
-            
+            cur_gt, validArea = getGroundTruth(fn_curGt)
+            cur_prob = np.clip((cur_prob.astype('f4')) / (np.iinfo(cur_prob.dtype).max), 0., 1.)
+
+            FN, FP, posNum, negNum = evalExp(cur_gt, cur_prob, thresh, validMap=None, validArea=validArea)
+
+            assert FN.max() <= posNum, 'BUG @ poitive samples'
+            assert FP.max() <= negNum, 'BUG @ negative samples'
+
             # collect results for whole category
             totalFP += FP
             totalFN += FN
             totalPosNum += posNum
             totalNegNum += negNum
-        
+
         if category_ok:
             print "Computing evaluation scores..."
             # Compute eval scores!
-            prob_eval_scores.append(pxEval_maximizeFMeasure(totalPosNum, totalNegNum, totalFN, totalFP, thresh = thresh))
+            prob_eval_scores.append(pxEval_maximizeFMeasure(totalPosNum, totalNegNum, totalFN, totalFP, thresh=thresh))
             eval_cats.append(cat)
-            
+
             factor = 100
             for property in dataStructure.eval_propertyList:
-                print '%s: %4.2f ' %(property, prob_eval_scores[-1][property]*factor,)
+                print '%s: %4.2f ' % (property, prob_eval_scores[-1][property] * factor,)
 
+            print "Finished evaluating category: %s " % (eval_cats[-1],)
 
-            print "Finished evaluating category: %s " %(eval_cats[-1],)
-    
-    if len(eval_cats)>0:     
-        print "Successfully finished evaluation for %d categories: %s " %(len(eval_cats),eval_cats)
-        return True
+    if len(eval_cats) > 0:
+            print "Successfully finished evaluation for %d categories: %s " % (len(eval_cats), eval_cats)
+            return True
     else:
-        print "No categories have been evaluated!"
-        return False
+            print "No categories have been evaluated!"
+            return False
+
+
+    #     for fn_curGt in gt_fileList:
+    #
+    #         file_key = fn_curGt.split('/')[-1].split('.')[0]
+    #         file_key_1,file_key_2,file_key_3=file_key.split('_')
+    #         _file_key=file_key_1+'_'+file_key_3
+    #         if debug:
+    #             print "Processing file: %s " %file_key
+    #
+    #         # get tags
+    #         tags = file_key.split('_')
+    #         ts_tag = tags[2]
+    #         dataset_tag = tags[0]
+    #         class_tag = tags[1]
+    #
+    #
+    #         # Read GT
+    #         cur_gt, validArea = getGroundTruth(fn_curGt)
+    #
+    #         # Read probmap and normalize
+    #         fn_curProb = os.path.join(submission_dir, _file_key + dataStructure.prob_end)
+    #
+    #         if not os.path.isfile(fn_curProb):
+    #             print "Cannot find file: %s for category %s." %(_file_key, cat)
+    #             print "--> Will now abort evaluation for this particular category."
+    #             category_ok = False
+    #             break
+    #
+    #         cur_prob = cv2.imread(fn_curProb,0)
+    #         # cur_prob = np.load(fn_curProb)
+    #         cur_prob = np.clip( (cur_prob.astype('f4'))/(np.iinfo(cur_prob.dtype).max),0.,1.)
+    #
+    #         FN, FP, posNum, negNum = evalExp(cur_gt, cur_prob, thresh, validMap = None, validArea=validArea)
+    #
+    #         assert FN.max()<=posNum, 'BUG @ poitive samples'
+    #         assert FP.max()<=negNum, 'BUG @ negative samples'
+    #
+    #         # collect results for whole category
+    #         totalFP += FP
+    #         totalFN += FN
+    #         totalPosNum += posNum
+    #         totalNegNum += negNum
+    #
+    #     if category_ok:
+    #         print "Computing evaluation scores..."
+    #         # Compute eval scores!
+    #         prob_eval_scores.append(pxEval_maximizeFMeasure(totalPosNum, totalNegNum, totalFN, totalFP, thresh = thresh))
+    #         eval_cats.append(cat)
+    #
+    #         factor = 100
+    #         for property in dataStructure.eval_propertyList:
+    #             print '%s: %4.2f ' %(property, prob_eval_scores[-1][property]*factor,)
+    #
+    #
+    #         print "Finished evaluating category: %s " %(eval_cats[-1],)
+    #
+    # if len(eval_cats)>0:
+    #     print "Successfully finished evaluation for %d categories: %s " %(len(eval_cats),eval_cats)
+    #     return True
+    # else:
+    #     print "No categories have been evaluated!"
+    #     return False
     
 
 
@@ -166,7 +226,7 @@ if __name__ == "__main__":
     # parse parameters
     # result_dir = sys.argv[1]
     # gt_dir = sys.argv[2]
-    result_dir='../../DATA/data_road/gt_image_1'
+    result_dir='../../DATA/data_road/gt_image_3'
     gt_dir='../../DATA/data_road/training/'
     # Excecute main fun 
     main(result_dir, gt_dir)
