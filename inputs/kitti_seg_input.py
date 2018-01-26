@@ -466,12 +466,12 @@ def inputs(hypes, q, phase):
         image.set_shape([None, None, 3])
         image = tf.expand_dims(image, 0)
         label = tf.expand_dims(label, 0)
-        if hypes['solver']['batch_size'] > 1:
-            logging.error("Using a batch_size of {} with unknown shape."
-                          .format(hypes['solver']['batch_size']))
-            logging.error("Set batch_size to 1 or use `reseize_image` "
-                          "or `crop_patch` to obtain a defined shape")
-            raise ValueError
+        # if hypes['solver']['batch_size'] > 1:
+        #     logging.error("Using a batch_size of {} with unknown shape."
+        #                   .format(hypes['solver']['batch_size']))
+        #     logging.error("Set batch_size to 1 or use `reseize_image` "
+        #                   "or `crop_patch` to obtain a defined shape")
+        #     raise ValueError
     else:
         image, label = q.dequeue_many(hypes['solver']['batch_size'])
 

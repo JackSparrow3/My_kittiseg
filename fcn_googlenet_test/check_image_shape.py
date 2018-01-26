@@ -6,7 +6,7 @@ import tensorflow as tf
 import inception.inception_v4 as inceptionv4
 import ResNet.resnet_v1_same_addinput as resnet
 import tensorflow.contrib.slim as slim
-import inception.v3_rdsize_refint as inceptionv3
+import inception.v3_refintv2 as inceptionv3
 import incl.tensorflow_fcn.fcn8_vgg as vgg
 import numpy as np
 # sys.path.append(sys.path.append('/home/yu/projects/FCN_GoogLeNet'))
