@@ -29,7 +29,7 @@ import os
 import sys
 import time
 import collections
-
+import cv2
 # configure logging
 
 logging.basicConfig(format='%(asctime)s %(levelname)s %(message)s',
@@ -203,7 +203,7 @@ def main(_):
     street_prediction=np.empty([int(shape[0])*int(shape[1]),1])
     if use_crf:
         output_image = output[0][:, :].reshape(shape[0], shape[1], 2)
-        output_image = post_crf.post_process_crf(image, output_image, 2)
+        # output_image = post_crf.post_process_crf(image, output_image, 2)
     else:
         output_image = output[0][:, 1].reshape(shape[0], shape[1])
 
@@ -221,6 +221,8 @@ def main(_):
     # res=post_crf.post_process_crf(image,output_image,2)
     output_image1=output[0][:,0].reshape(shape[0], shape[1])
     street_prediction=output_image > output_image1
+    output_image2=output_image.reshape(shape[0],shape[1],-1)
+    output_image2=output_image2*255.0
 
 
 
@@ -247,31 +249,10 @@ def main(_):
     save_image=True
     if save_image:
         # np.save(FLAGS.logdir+'182000' + '.png',output_image)
-        scp.misc.imsave(FLAGS.logdir+'182000' + '.png', output_image)
+        cv2.imwrite(FLAGS.logdir+'182000' + '.png', output_image2)
+        # scp.misc.imsave(FLAGS.logdir+'182000' + '.png', output_image2)
     scp.misc.imshow(green_image)
-    """
-    scp.misc.imsave(raw_image_name, output_image)
-    scp.misc.imsave(rb_image_name, rb_image)
-    scp.misc.imsave(green_image_name, green_image)
-    """
-    logging.info("")
-    logging.info("Raw output image has been saved to: {}".format(
-        os.path.realpath(raw_image_name)))
-    logging.info("Red-Blue overlay of confs have been saved to: {}".format(
-        os.path.realpath(rb_image_name)))
-    logging.info("Green plot of predictions have been saved to: {}".format(
-        os.path.realpath(green_image_name)))
 
-    logging.info("")
-    logging.warning("Do NOT use this Code to evaluate multiple images.")
-
-    logging.warning("Demo.py is **very slow** and designed "
-                    "to be a tutorial to show how the KittiSeg works.")
-    logging.warning("")
-    logging.warning("Please see this comment, if you like to apply demo.py to"
-                    "multiple images see:")
-    logging.warning("https://github.com/MarvinTeichmann/KittiBox/"
-                    "issues/15#issuecomment-301800058")
 
 
 if __name__ == '__main__':
