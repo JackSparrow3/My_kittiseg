@@ -676,7 +676,9 @@ def inception_v3_fcn(inputs,
                         net = tf.concat(axis=3, values=[branch_0, branch_1, branch_2, branch_3])
                     end_points[end_point] = net
                     # 10x37x1280
-
+                    end_point='CRP_0'
+                    net, end_points = crp(net, end_points, 1280, end_point)
+                    # 10x37x1280
                     end_point = "Conv2d_Trans_1"
 
                     net, end_points= _upscore_layer(net,end_points,tf.shape(end_points['Mixed_6b']),depth=768,
@@ -721,6 +723,9 @@ def inception_v3_fcn(inputs,
                     end_points[end_point] = net
 
                     # 21x75x768
+                    end_point='CRP_1'
+                    net, end_points = crp(net, end_points, 768, end_point)
+                    # 21x75x768
                     end_point = "Conv2d_Trans_2"
                     net, end_points=_upscore_layer(net,end_points,tf.shape(end_points['Mixed_5d']),288,3,3,name=end_point)
                     # 45x153x288
@@ -754,7 +759,9 @@ def inception_v3_fcn(inputs,
                         net = tf.concat(axis=3, values=[branch_0, branch_1, branch_2, branch_3])
                     end_points[end_point] = net
 
-
+                    # 45x153x288
+                    end_point='CRP_2'
+                    net,end_points=crp(net,end_points,288,end_point)
                     # 45x153x288
                     # TODO upsampling
 
@@ -791,7 +798,8 @@ def inception_v3_fcn(inputs,
                         net = tf.concat(axis=3, values=[branch_0, branch_1, branch_2, branch_3])
                     end_points[end_point] = net
                     # 92x308x192
-
+                    end_point = 'CRP_3'
+                    net, end_points = crp(net, end_points, 192, end_point)
                     # 92x308x192
                     # TODO upsampling
 
@@ -828,11 +836,17 @@ def inception_v3_fcn(inputs,
                     end_points[end_point] = net
 
                     # 189x621x32
-
+                    end_point = 'CRP_4'
+                    net, end_points = crp(net, end_points, 32, end_point)
+                    # 189x621x32
                     # TODO upsampling
 
                     net,end_points = _upscore_layer(net,end_points,tf.shape(inputs),num_classes,3,3,name='Conv2d_Trans_5')
-
+                    net,end_points=conv(net,end_points,[1,1,2,2],name='Trans_5_conv_1')
+                    end_point = 'CRP_5'
+                    net, end_points = crp(net, end_points, 2, end_point)
+                    # # this is without skip 'fuse'
+                    # net = slim.stack(net, slim.conv2d_transpose, [(depth, [kernel_size]),(another_one)], scope='UpsamplingStack')
 
             # 384x1248x2
             # size of the output TODO

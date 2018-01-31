@@ -150,15 +150,16 @@ def main(_):
 
         logging.info("Graph build successfully.")
 
-
+        config = tf.ConfigProto()
+        config.gpu_options.allow_growth = True
         sess = tf.Session()
         saver = tf.train.Saver()
 
         # Load weights from logdir
         core.load_weights(logdir, sess, saver)
 
-        eval_dict,_=kitti_eval.evaluate_without_crf(hypes,sess,image_placehold,prediction)
-        # eval_dict , _ =kitti_eval.evaluate_test(hypes,sess,image_placehold,prediction)
+        # eval_dict,_=kitti_eval.evaluate_without_crf(hypes,sess,image_placehold,prediction)
+        eval_dict , _ =kitti_eval.evaluate_test(hypes,sess,image_placehold,prediction)
         for name, value in eval_dict:
             logging.info('    %s %s : % 0.04f ' % (name, '(raw)', value))
         # utils.print_eval_dict(eval_dict, prefix='(raw) ')

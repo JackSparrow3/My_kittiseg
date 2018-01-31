@@ -15,7 +15,7 @@ from __future__ import print_function
 
 
 import tensorflow as tf
-from inception import v3_refintv2 as inception
+from inception import v3_refinev3 as inception
 import os
 import tensorflow.contrib.slim as slim
 
@@ -31,7 +31,7 @@ def inference(hypes, images, train=True):
     """
 
 
-    with slim.arg_scope(inception.inception_v3_arg_scope(weight_decay=2e-5)):
+    with slim.arg_scope(inception.inception_v3_arg_scope(weight_decay=1e-5)):
          logit, _ = inception.inception_v3_fcn(images,is_training=train,dropout_keep_prob=hypes['solver']['dropout'])
     logits = {}
 

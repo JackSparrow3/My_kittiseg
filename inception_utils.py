@@ -160,3 +160,15 @@ def conv(input,end_points,shape=None,wd=0.00004,name=None,):
   end_points[end_point]=net
   return net, end_points
 
+def CRP(input,end_points,depth,name=None):
+  with tf.variable_scope(name):
+    with slim.arg_scope([slim.avg_pool2d],stride=1,padding='SAME'):
+      net=tf.nn.relu(input)
+      pol=slim.avg_pool2d(net,[5,5],scope='pool1')
+      pol=slim.conv2d(pol,depth,[3,3],scope='conv1')
+      sum=tf.add(net,pol)
+      pol=slim.avg_pool2d(pol,[5,5],scope='pool2')
+      pol=slim.conv2d(pol,depth,[3,3],scope='conv2')
+      sum=tf.add(sum,pol)
+      end_points[name]=sum
+      return sum,end_points

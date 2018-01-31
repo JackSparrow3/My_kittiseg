@@ -457,7 +457,7 @@ def inputs(hypes, q, phase):
         return image, label
 
     shape_known = hypes['jitter']['reseize_image'] \
-        or hypes['jitter']['crop_patch']
+        or hypes['jitter']['crop_patch'] or hypes['jitter']['random_resize']
 
     if not shape_known:
         image, label = q.dequeue()

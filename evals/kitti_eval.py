@@ -348,7 +348,7 @@ def evaluate_without_crf(hypes,sess,image_pl,inf_out):
                         dataset_tag,class_tag=num.split('_')
                         output_im_=output_im*255.0
                         output_im_=output_im_.reshape(shape[0],shape[1],-1)
-                        output_path=image_dir+'/gt_image_1/'+dataset_tag+'_'+'road'+'_'+class_tag
+                        output_path=image_dir+'/umm_1/'+dataset_tag+'_'+'road'+'_'+class_tag
                         # np.save(image_dir+'/gt_image_1/'+num,output_im_)
                         cv2.imwrite(output_path,output_im_)
 
@@ -408,7 +408,7 @@ def evaluate_test(hypes,sess,image_pl,inf_out):
     data_dir = hypes['dirs']['data_dir']
 
     eval_dict = {}
-    for phase in ['val']:
+    for phase in ['test']:
         data_file = hypes['data']['{}_file'.format(phase)]
         data_file = os.path.join(data_dir, data_file)
         image_dir = os.path.dirname(data_file)
@@ -465,12 +465,12 @@ def evaluate_test(hypes,sess,image_pl,inf_out):
                     output_im = output[0][:, 1].reshape(shape[0], shape[1])
                     # output_im = output[0][:, :].reshape(shape[0], shape[1],2)
                     # output_im = post_crf.post_process_crf(input_image, output_im, 2)
-                    if phase == 'val':
+                    if phase == 'test':
                         _,_,_,_,num=image_file.split("/")
                         dataset_tag,class_tag=num.split('_')
                         output_im_=output_im*255.0
                         output_im_=output_im_.reshape(shape[0],shape[1],-1)
-                        output_path=image_dir+'/gt_image_3/'+dataset_tag+'_'+'road'+'_'+class_tag
+                        output_path=image_dir+'/gt_image_1/'+dataset_tag+'_'+'road'+'_'+class_tag
                         # np.save(image_dir+'/gt_image_1/'+num,output_im_)
                         cv2.imwrite(output_path,output_im_)
 
