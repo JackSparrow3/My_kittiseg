@@ -292,12 +292,12 @@ def run_training(hypes, modules, tv_graph, tv_sess, start_step=0):
             logging.info("Evaluation Finished. All results will be saved to:")
             logging.info(hypes['dirs']['output_dir'])
 
-            if images is not None and len(images) > 0:
-
-                name = str(n % 10) + '_' + images[0][0]
-                image_file = os.path.join(hypes['dirs']['image_dir'], name)
-                scp.misc.imsave(image_file, images[0][1])
-                n = n + 1
+            # if images is not None and len(images) > 0:
+            #
+            #     name = str(n % 10) + '_' + images[0][0]
+            #     image_file = os.path.join(hypes['dirs']['image_dir'], name)
+            #     scp.misc.imsave(image_file, images[0][1])
+            #     n = n + 1
 
             logging.info('Raw Results:')
             utils.print_eval_dict(eval_dict, prefix='(raw)   ')
@@ -371,7 +371,7 @@ def do_training(hypes,trainable_scopes=None,exclude_scopes=None,checkpoint_path=
     # Tell TensorFlow that the model will be built into the default Graph.
     config = tf.ConfigProto()
     config.gpu_options.allow_growth=True
-    with tf.Session() as sess:
+    with tf.Session(config=config) as sess:
 
         # build the graph based on the loaded modules
         with tf.name_scope("Queues"):

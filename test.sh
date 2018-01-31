@@ -1,2 +1,3 @@
-python Train_Road_Detection_resnet_same_addinput.py
-python Train_Road_Detection_resnet_gcn.py
+python train_inceptionv3.py
+python Train_Road_Detection_InceptionV3_u_net.py
+python Train_Road_Detection_InceptionV3_u_net_same.py
