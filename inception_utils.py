@@ -110,7 +110,7 @@ def _upscore_layer(input, end_points=None, out_shape=None,depth=None, wkersize=N
   end_point=name
   strides = [1, stride, stride, 1]
   with tf.variable_scope(name):
-    new_shape=[1,out_shape[1],out_shape[2],depth]
+    new_shape=[out_shape[0],out_shape[1],out_shape[2],depth]
     # out_shape=tf.convert_to_tensor(new_shape)
     # new_shape = tf.stack(new_shape)
     in_channel = input.get_shape()[3].value
@@ -165,10 +165,10 @@ def CRP(input,end_points,depth,name=None):
     with slim.arg_scope([slim.avg_pool2d],stride=1,padding='SAME'):
       net=tf.nn.relu(input)
       pol=slim.avg_pool2d(net,[5,5],scope='pool1')
-      pol=slim.conv2d(pol,depth,[3,3],scope='conv1')
+      pol=slim.conv2d(pol,depth,[3,3],scope='conv1',activation_fn=None,normalizer_fn=None)
       sum=tf.add(net,pol)
       pol=slim.avg_pool2d(pol,[5,5],scope='pool2')
-      pol=slim.conv2d(pol,depth,[3,3],scope='conv2')
+      pol=slim.conv2d(pol,depth,[3,3],scope='conv2',activation_fn=None,normalizer_fn=None)
       sum=tf.add(sum,pol)
       end_points[name]=sum
       return sum,end_points

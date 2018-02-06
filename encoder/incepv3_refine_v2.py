@@ -31,7 +31,7 @@ def inference(hypes, images, train=True):
     """
 
 
-    with slim.arg_scope(inception.inception_v3_arg_scope(weight_decay=1e-5)):
+    with slim.arg_scope(inception.inception_v3_arg_scope(weight_decay=3e-5)):
          logit, _ = inception.inception_v3_fcn(images,is_training=train,dropout_keep_prob=hypes['solver']['dropout'])
     logits = {}
 

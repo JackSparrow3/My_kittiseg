@@ -31,7 +31,7 @@ from tensorflow.python.ops import math_ops
 from tensorflow.python.training import queue_runner
 from tensorflow.python.ops import data_flow_ops
 from tensorflow.python.framework import dtypes
-
+import cv2
 import threading
 
 
@@ -205,7 +205,21 @@ def jitter_input(hypes, image, gt_image):
         image, gt_image = random_crop(image, gt_image,
                                       patch_height, patch_width)
 
+    width = hypes['jitter']['image_width']
+    height = hypes['jitter']['image_height']
+    if image.shape[0] != 384:
+        image = scipy.misc.imresize(image, size=(height, width),
+                                    interp='cubic')
+        shape = gt_image.shape
+        gt_zero = np.zeros([shape[0], shape[1], 1])
+        gt_image = np.concatenate((gt_image, gt_zero), axis=2)
+        gt_image = scipy.misc.imresize(gt_image, size=(height, width),
+                                       interp='nearest')
+        gt_image = gt_image[:, :, 0:2] / 255
+
     assert(image.shape[:-1] == gt_image.shape[:-1])
+    # print ("Using a image shape of {}."
+    #                       .format(image.shape))
     return image, gt_image
 
 
@@ -284,7 +298,7 @@ def random_resize(image, gt_image, lower_size, upper_size, sig):
     gt_zero = np.zeros([shape[0], shape[1], 1])
     gt_image = np.concatenate((gt_image, gt_zero), axis=2)
     gt_image = scipy.misc.imresize(gt_image, factor, interp='nearest')
-    gt_image = gt_image[:, :, 0:2]/255
+    # gt_image = gt_image[:, :, 0:2]/255
     return image, gt_image
 
 
@@ -300,7 +314,7 @@ def crop_to_size(hypes, image, gt_image):
         offset_y = random.randint(0, max_y)
         image = image[offset_x:offset_x+height, offset_y:offset_y+width]
         gt_image = gt_image[offset_x:offset_x+height, offset_y:offset_y+width]
-
+        gt_image = gt_image[:, :, 0:2] / 255
     return image, gt_image
 
 #this function will create a queues ,the capacity is 50-----------------------------------------yu
@@ -310,24 +324,35 @@ def create_queues(hypes, phase):
     dtypes = [tf.float32, tf.int32]
 
     shape_known = hypes['jitter']['reseize_image'] \
-        or hypes['jitter']['crop_patch']
+        or hypes['jitter']['crop_patch'] or hypes['jitter']['random_resize']
 
     if shape_known:
         if hypes['jitter']['crop_patch']:
             height = hypes['jitter']['patch_height']
             width = hypes['jitter']['patch_width']
+            channel = hypes['arch']['num_channels']
+            num_classes = hypes['arch']['num_classes']
+            shapes = [[height, width, channel],
+                      [height, width, num_classes]]
+        elif hypes['jitter']['random_resize']:
+            height = hypes['jitter']['image_height']
+            width = hypes['jitter']['image_width']
+            channel = hypes['arch']['num_channels']
+            num_classes = hypes['arch']['num_classes']
+            shapes = [[height, width, channel],
+                      [height, width, num_classes]]
         else:
             height = hypes['jitter']['image_height']
             width = hypes['jitter']['image_width']
-        channel = hypes['arch']['num_channels']
-        num_classes = hypes['arch']['num_classes']
-        shapes = [[height, width, channel],
+            channel = hypes['arch']['num_channels']
+            num_classes = hypes['arch']['num_classes']
+            shapes = [[height, width, channel],
                   [height, width, num_classes]]
     else:
         shapes = None
 
     capacity = 50
-    q = tf.FIFOQueue(capacity=50, dtypes=dtypes, shapes=shapes)
+    q = tf.FIFOQueue(capacity=50, dtypes=dtypes,shapes=shapes)
     tf.summary.scalar("queue/%s/fraction_of_%d_full" %
                       (q.name + "_" + phase, capacity),
                       math_ops.cast(q.size(), tf.float32) * (1. / capacity))
