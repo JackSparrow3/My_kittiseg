@@ -1,7 +1,7 @@
 {
   "model": {
     "input_file": "../inputs/kitti_seg_input.py",
-    "architecture_file" : "../encoder/incepv3_refine_v2_1.py",
+    "architecture_file" : "../encoder/resnet_refinenet_v1.py",
     "objective_file" : "../decoder/incepV3_loss.py",
     "optimizer_file" : "../optimizer/generic_optimizer.py",
     "evaluator_file" : "../evals/kitti_eval.py"
@@ -57,7 +57,7 @@
 
   "solver": {
       "opt": "Adam",
-      "batch_size": 4,
+      "batch_size": 2,
       "epsilon": 0.000000001,
       "adam_eps": 0.00001,
       "threads": 4,

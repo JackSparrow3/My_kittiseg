@@ -348,7 +348,7 @@ def evaluate_without_crf(hypes,sess,image_pl,inf_out):
                         dataset_tag,class_tag=num.split('_')
                         output_im_=output_im*255.0
                         output_im_=output_im_.reshape(shape[0],shape[1],-1)
-                        output_path=image_dir+'/umm_1/'+dataset_tag+'_'+'road'+'_'+class_tag
+                        output_path=image_dir+'/gt_image_1/'+dataset_tag+'_'+'road'+'_'+class_tag
                         # np.save(image_dir+'/gt_image_1/'+num,output_im_)
                         cv2.imwrite(output_path,output_im_)
 
@@ -470,7 +470,7 @@ def evaluate_test(hypes,sess,image_pl,inf_out):
                         dataset_tag,class_tag=num.split('_')
                         output_im_=output_im*255.0
                         output_im_=output_im_.reshape(shape[0],shape[1],-1)
-                        output_path=image_dir+'/gt_image_1/'+dataset_tag+'_'+'road'+'_'+class_tag
+                        output_path=image_dir+'/gt_image_3/'+dataset_tag+'_'+'road'+'_'+class_tag
                         # np.save(image_dir+'/gt_image_1/'+num,output_im_)
                         cv2.imwrite(output_path,output_im_)
 

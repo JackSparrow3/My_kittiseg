@@ -11,13 +11,13 @@ Copyright (c) 2017 Marvin Teichmann
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
-
+import tensorflow.contrib.slim as slim
 
 
 import tensorflow as tf
-from inception import v3_refinev3 as inception
+from ResNet import resnet_refine_v1 as resnet
 import os
-import tensorflow.contrib.slim as slim
+
 
 def inference(hypes, images, train=True):
     """.
@@ -31,8 +31,8 @@ def inference(hypes, images, train=True):
     """
 
 
-    with slim.arg_scope(inception.inception_v3_arg_scope(weight_decay=6e-5)):
-         logit, _ = inception.inception_v3_fcn(images,is_training=train,dropout_keep_prob=hypes['solver']['dropout'])
+    with slim.arg_scope(resnet.resnet_arg_scope()):
+        logit, _ = resnet.resnet_v2_50(images,2,is_training=train,global_pool=False)
     logits = {}
 
     logits['images'] = images

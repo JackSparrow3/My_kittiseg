@@ -22,6 +22,9 @@ import sys
 slim = tf.contrib.slim
 
 import collections
+import inception.inception_v3
+
+
 def dict_merge(dct, merge_dct):
     """ Recursive dict merge. Inspired by :meth:``dict.update()``, instead of
     updating only top-level keys, dict_merge recurses down into dicts nested
@@ -64,20 +67,17 @@ import incl.tensorvision.utils as utils
 flags.DEFINE_string('name', None,
                     'Append a name Tag to run.')
 
-flags.DEFINE_string('hypes', 'hypes/InceptionV3.json',
-                    'File storing model parameters.')
-
 flags.DEFINE_string('project', None,
                     'Append a name Tag to run.')
 
-# flags.DEFINE_string('hypes', 'hypes/InceptionV3.json',
-#                     'File storing model parameters.')
+flags.DEFINE_string('hypes', 'hypes/InceptionV3.json',
+                    'File storing model parameters.')
 
 flags.DEFINE_string('mod', None,
                     'Modifier for model parameters.')
 #tf.flags.DEFINE_string('train_dir', 'logs/all','Directory where checkpoints and event logs are written to.')
 
-tf.flags.DEFINE_string('checkpoint_exclude_scopes', None,
+tf.flags.DEFINE_string('checkpoint_exclude_scopes', 'InceptionV3/Logits,InceptionV3/AuxLogits',
     'Comma-separated list of scopes of variables to exclude when restoring '
     'from a checkpoint.')
 # this should be 'InceptionV3/Logits,InceptionV3/AuxLogits', used to be None
@@ -91,7 +91,7 @@ tf.flags.DEFINE_boolean(
     'ignore_missing_vars', True,'When restoring a checkpoint would ignore missing variables.')
 
 tf.flags.DEFINE_string(
-    'checkpoint_path', 'ResNet/resnet_v2_101.ckpt','The path to a checkpoint from which to fine-tune.')
+    'checkpoint_path', 'inception/inception_v3.ckpt','The path to a checkpoint from which to fine-tune.')
 # this should be 'logs', used to be None
 
 tf.flags.DEFINE_string(
@@ -125,7 +125,10 @@ def train_loop(myhypes=None):
                       "'git submodule update --init --recursive'")
         exit(1)
 
-
+    if tf.app.flags.FLAGS.hypes is None:
+        logging.error("No hype file is given.")
+        logging.info("Usage: python train.py --hypes hypes/KittiClass.json")
+        exit(1)
 
     with open(myhypes, 'r') as f:
         logging.info("f: %s", f)
@@ -158,7 +161,7 @@ def train_loop(myhypes=None):
 def main(_):
     # train_loop('hypes/InceptionV3.json')
     # train_loop('hypes/InceptionV3_concat.json')
-    train_loop('hypes/Resnet-v2_ppmgcn_101.json')
+    train_loop('hypes/v3_random_refine_1.json')
 
 
 

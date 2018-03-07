@@ -110,9 +110,9 @@ if __name__ == "__main__":
     # dataFiles = sys.argv[1]
     # pathToCalib = sys.argv[2]
     # outputPath = sys.argv[3]
-    dataFiles = '../../DATA/data_road/gt_image_1/*.png'
+    dataFiles = '../../DATA/data_road/gt_image_3/*.png'
     pathToCalib = '../../DATA/data_road/testing/calib'
-    outputPath = '../../DATA/data_road/gt_image_3'
+    outputPath = '../../DATA/data_road/gt_image_2'
     # Excecute main fun
     main(dataFiles, pathToCalib, outputPath)
     

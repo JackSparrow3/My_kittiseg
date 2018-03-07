@@ -27,11 +27,11 @@ class dataStructure:
     All the defines go in here!
     '''
     
-    # cats = ['um_lane', 'um_road', 'umm_road', 'uu_road']
-    cats = ['umm_']
+    cats = ['um_road', 'umm_road', 'uu_road']
+    # cats = ['umm_']
     calib_end = '.txt'
-    # im_end = '.png'
-    im_end = '.png.npy'
+    im_end = '.png'
+    # im_end = '.png.npy'
     gt_end = '.png'
     # prob_end = '.png'
     prob_end = '.png'
@@ -226,7 +226,7 @@ if __name__ == "__main__":
     # parse parameters
     # result_dir = sys.argv[1]
     # gt_dir = sys.argv[2]
-    result_dir='../../DATA/data_road/umm_1'
+    result_dir='../../DATA/data_road/gt_image_1'
     gt_dir='../../DATA/data_road/training/'
     # Excecute main fun 
     main(result_dir, gt_dir)

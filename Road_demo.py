@@ -63,9 +63,9 @@ except ImportError:
     exit(1)
 
 
-flags.DEFINE_string('logdir', 'RUNS/InceptionV3_u_net_bn_f1=96.2',
+flags.DEFINE_string('logdir', 'RUNS/InceptionV3_2018_02_05_10.35',
                     'Path to logdir.')
-flags.DEFINE_string('input_image', 'DATA/data_road/testing/image_2/umm_000018.png',
+flags.DEFINE_string('input_image', 'DATA/data_road/training/image_2/umm_000039.png',
 
                     'Image to apply KittiSeg.')
 flags.DEFINE_string('output_image', None,
@@ -189,12 +189,12 @@ def main(_):
 
 
     # TODO test time -----------------------------------------------------------yu
-
-    for i in xrange(100):
-
-        output = sess.run([softmax],feed_dict=feed)
-    logging.info('Finished 100 time and average is in {}s\n'.format((
-        time.time() - start_time)/100.0))
+    #
+    # for i in xrange(100):
+    #
+    #     output = sess.run([softmax],feed_dict=feed)
+    # logging.info('Finished 100 time and average is in {}s\n'.format((
+    #     time.time() - start_time)/100.0))
 
     # TODO test time ----------------------------------------------------------yu
     # Reshape output from flat vector to 2D Image
@@ -251,7 +251,7 @@ def main(_):
     save_image=True
     if save_image:
         # np.save(FLAGS.logdir+'182000' + '.png',output_image)
-        cv2.imwrite(FLAGS.logdir+'182000' + '.png', output_image2)
+        cv2.imwrite(FLAGS.logdir+'um_000031' + '.png', green_image)
         # scp.misc.imsave(FLAGS.logdir+'182000' + '.png', output_image2)
     scp.misc.imshow(green_image)
 

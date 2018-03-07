@@ -335,22 +335,21 @@ def br(input, end_points=None, name=None):
 
 	return net, end_points
 
-def _upscore_layer(input, end_points=None, out_shape=None,depth=None, wkersize=None,hkersize=None,stride=2, padding='SAME', name=None):
+def _upscore_layer(input, end_points=None, out_shape=None,depth=None, wkersize=None,hkersize=None,stride=2, padding='VALID', name=None):
 	end_point=name
 	strides = [1, stride, stride, 1]
 	with tf.variable_scope(name):
-		new_shape=[1,out_shape[1],out_shape[2],depth]
+		new_shape=[out_shape[0],out_shape[1],out_shape[2],depth]
 		# out_shape=tf.convert_to_tensor(new_shape)
-		# out_shape = tf.stack(new_shape)
+        # new_shape = tf.stack(new_shape)
 		in_channel = input.get_shape()[3].value
 		out_channel=depth
 		f_shape=[wkersize,hkersize,out_channel,in_channel]
 		weights=_get_deconv_filter(f_shape=f_shape)
-
 		net = tf.nn.conv2d_transpose(input, weights, output_shape=new_shape,
-	                                strides=strides, padding=padding, name=end_point)
+	                        strides=strides, padding=padding, name=end_point)
 		end_points[end_point]=net
-	return net , end_points
+		return net, end_points
 
 def _get_deconv_filter(f_shape=None):
 	width = f_shape[0]
@@ -451,3 +450,16 @@ def ppm(input,end_points,name=None):
 
 
 		return net, end_points
+
+def CRP(input,end_points,depth,name=None):
+	with tf.variable_scope(name):
+		with slim.arg_scope([slim.avg_pool2d],stride=1,padding='SAME'):
+			net=tf.nn.relu(input)
+			pol=slim.avg_pool2d(net,[5,5],scope='pool1')
+			pol=slim.conv2d(pol,depth,[3,3],scope='conv1',activation_fn=None,normalizer_fn=None)
+			sum=tf.add(net,pol)
+			pol=slim.avg_pool2d(pol,[5,5],scope='pool2')
+			pol=slim.conv2d(pol,depth,[3,3],scope='conv2',activation_fn=None,normalizer_fn=None)
+			sum=tf.add(sum,pol)
+			end_points[name]=sum
+	return sum,end_points

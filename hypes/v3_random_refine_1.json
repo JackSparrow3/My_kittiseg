@@ -61,7 +61,7 @@
       "epsilon": 0.000000001,
       "adam_eps": 0.00001,
       "threads": 4,
-      "learning_rate": 4e-5,
+      "learning_rate": 8e-5,
       "learning_rate_step": null,
       "max_steps": 160000,
       "dropout":0.65
