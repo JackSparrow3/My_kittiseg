@@ -63,9 +63,9 @@ except ImportError:
     exit(1)
 
 
-flags.DEFINE_string('logdir', 'RUNS/InceptionV3_2018_02_05_10.35',
+flags.DEFINE_string('logdir', 'RUNS/inception_v3_refine_v3_the_best_f1=97',
                     'Path to logdir.')
-flags.DEFINE_string('input_image', 'DATA/data_road/training/image_2/umm_000039.png',
+flags.DEFINE_string('input_image', 'DATA/data_road/testing/image_2/umm_000036.png',
 
                     'Image to apply KittiSeg.')
 flags.DEFINE_string('output_image', None,
@@ -167,6 +167,7 @@ def main(_):
 
     # Load and resize input image
     image = scp.misc.imread(input_image)
+    image= scp.misc.imresize(image,[150,150,3])
 
     # image2 = scp.misc.imread('/home/yu/projects/KittiSeg/data/demo/demo2.png')
     if hypes['jitter']['reseize_image']:
@@ -189,12 +190,12 @@ def main(_):
 
 
     # TODO test time -----------------------------------------------------------yu
-    #
-    # for i in xrange(100):
-    #
-    #     output = sess.run([softmax],feed_dict=feed)
-    # logging.info('Finished 100 time and average is in {}s\n'.format((
-    #     time.time() - start_time)/100.0))
+
+    for i in xrange(100):
+
+        output = sess.run([softmax],feed_dict=feed)
+    logging.info('Finished 100 time and average is in {}s\n'.format((
+        time.time() - start_time)/100.0))
 
     # TODO test time ----------------------------------------------------------yu
     # Reshape output from flat vector to 2D Image
@@ -248,12 +249,13 @@ def main(_):
     green_image_name = output_base_name.split('.')[0] + '_green.png'
     # scp.misc.imshow(rb_image)
     #TODO save the image--------------------------------------------------------------------------yu
-    save_image=True
+    save_image=False
     if save_image:
         # np.save(FLAGS.logdir+'182000' + '.png',output_image)
         cv2.imwrite(FLAGS.logdir+'um_000031' + '.png', green_image)
         # scp.misc.imsave(FLAGS.logdir+'182000' + '.png', output_image2)
     scp.misc.imshow(green_image)
+    scp.misc.imsave('prediction_umm_000036.png',green_image)
 
 
 

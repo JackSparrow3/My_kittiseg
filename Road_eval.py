@@ -66,7 +66,7 @@ except ImportError:
                   "'git submodule update --init --recursive'")
     exit(1)
 
-flags.DEFINE_string('logdir', '/home/yu/projects/KittiSeg/RUNS/InceptionV3_2018_02_05_10.35',
+flags.DEFINE_string('logdir', 'InceptionV3_2018_02_05_10.35',
                     'Path to logdir.')
 flags.DEFINE_string('input_image', '/home/yu/projects/KittiSeg/DATA/data_road/testing/image_2/umm_000000.png',
                     'Image to apply KittiSeg.')
